@@ -113,43 +113,6 @@ input.datepicker {
   width: 100%;
 }
 
-.arrow_left {
-  position: relative;
-  background: #ffffff;
-  border: 1px solid #A0A0A0;
-}
-.arrow_left:after, .arrow_left:before {
-  right: 100%;
-  top: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-}
-
-.arrow_left:after {
-  border-color: rgba(255, 255, 255, 0);
-  border-right-color: #ffffff;
-  border-width: 5px;
-  margin-top: -5px;
-}
-.arrow_left:before {
-  border-color: rgba(0, 0, 0, 0);
-  border-right-color: #6D6D6D;
-  border-width: 6px;
-  margin-top: -6px;
-}
-.valmsg{
-  position: absolute;
-  margin-top: -40px;
-  margin-left: 208px;
-  padding: 3px;
-}
-.hide{
-  display: none;
-}
 /*===HEADER===*/
 .header {
   border-bottom: 1px solid rgba(0,0,0,0.5);
@@ -182,8 +145,6 @@ input.datepicker {
 
 
 /* LOGIN TOP MENU*/
-
-
 .header .login-top-menu > nav ul{
   display: block;
   list-style-type: none;
@@ -251,7 +212,6 @@ input.datepicker {
   border-width: 6px;
   margin-left: 39px;
 }
-
 /* LOGIN TOP MENU*/
 
 
@@ -884,6 +844,9 @@ p.modal-title {
   margin: 0 auto;
   margin-bottom: 40px;
 }
+.nearest-header > div {
+  padding: 0 15px;
+}
 .nearest-header h3 {
   font-size: 26px;
   margin: 15px 0;
@@ -949,9 +912,36 @@ p.modal-title {
   color:red;
 }
 
+/*===WHAT TO WATCH===*/
+.search-input-nearest.whattowatch input {
+  width: 45%;
+  border: 1px solid #CECECE;
+  margin-left: -40px;
+}
+
+button.upload {
+  position: absolute;
+  margin-top: 1px;
+  border-radius: 0px 6px 6px 0px;
+  border: 0;
+  background-color: rgba(0,0,0,0.2);
+  padding: 5px 6px;
+  z-index: 10;
+}
+
+.search-input-nearest.whattowatch > form > a img {
+  margin-left: -89px;
+}
+
+.video-list > div {
+  margin-left: 35px;
+  padding: 17px;
+}
+
 /*===FOOTER===*/
 .footer {
   border-top: 1px solid #C7C7C7;
+  padding: 0 10px;
 }
 
 .copyright {
@@ -1428,6 +1418,31 @@ p.modal-title {
   }
 }
 
+@media only screen and (max-width: 706px) {
+  .footer {
+    border-top: 1px solid #C7C7C7;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .copyright {
+    margin-top: 10px;
+    font-size: 14px;
+    float: none;
+  }
+
+  .footer-menu {
+    float: none;
+  }
+
+  .footer > div > .footer-menu > nav > ul {
+    list-style-type: none;
+    padding: 10px 0 0 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
 @media only screen and (max-width: 700px) {
   .play > img {
     position: absolute;
@@ -1541,6 +1556,12 @@ p.modal-title {
     left: 41px;
     font-size: 10px;
     color: white;
+  }
+
+  .search-input-nearest.whattowatch input {
+    width: 55%;
+    border: 1px solid #CECECE;
+    margin-left: -40px;
   }
 }
 
@@ -1729,6 +1750,12 @@ p.modal-title {
     box-shadow: 0 0 25px #8E8E8E;
     border-radius: 6px;
   }
+
+  .search-input-nearest.whattowatch input {
+    width: 70%;
+    border: 1px solid #CECECE;
+    margin-left: -40px;
+  }
 }
 
 @media only screen and (max-width: 450px) {
@@ -1850,6 +1877,12 @@ p.modal-title {
     left: 56px;
     font-size: 10px;
     color: white;
+  }
+
+  .search-input-nearest.whattowatch input {
+    width: 90%;
+    border: 1px solid #CECECE;
+    margin-left: -50px;
   }
 }
 
