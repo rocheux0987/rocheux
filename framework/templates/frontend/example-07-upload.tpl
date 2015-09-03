@@ -37,35 +37,27 @@ $(document).ready(function() {
 		if (!valid_file_extension($(this).val())){
 			$(this).val("");
 		}
-    });
+	});
 });
 </script>
 {/literal}
 
 
 
-<div class="mid">
- <div class="modal-popup" id="popup-login">
-        <div class="modal-popup-overlay"></div>
-        <div class="modal-popup-inner">
-            <h2>Upload</h2>
-            <div id="response" style="font-family:'Century Gothic',CenturyGothic,AppleGothic,sans-serif; {if $upload_result_type eq 'success'}color:green;{else}color:red;{/if} text-align:center;">{$upload_result_msg}</div>
-            <form id="upload_form" method="post" enctype="multipart/form-data">
-            <fieldset>
-            	<div class="popup-fields">
-                	<div class="popup-field-label">
-                    File
-                    </div>
-                	<div class="popup-field" id="file-container">
-                    <input type="file" name="file" id="file" />
-                    </div>
-                </div>
-                <div class="popup-fields">
-                	<div class="button-primary" onclick="upload();">
-                    	Upload
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-</div>
+<form id="upload_form" method="post" enctype="multipart/form-data">
+	<fieldset>
+		<div class="popup-fields">
+			<div class="popup-field-label">
+				File
+			</div>
+			<div class="popup-field" id="file-container" >
+				<input type="file" name="file[]" id="file" multiple/>
+			</div>
+		</div>
+		<div class="popup-fields">
+			<div class="button-primary" onclick="upload();">
+				Upload
+			</div>
+		</div>
+	</fieldset>
+</form>

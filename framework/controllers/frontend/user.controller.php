@@ -7,6 +7,7 @@
 		var $vet_table = "?:vets";
 		var $mer_table = "?:merchants";
 		var $vet_pet_table = "?:vet_pet_types";
+		var $vet_images = "?:vet_images";
 
 		function register($user , $file , $type){
 			global $notifications, $db;
@@ -80,7 +81,9 @@
 
 		function vetregister($vet , $file , $id){
 			global $notifications, $db , $filesystem, $images;
+
 			$file['logo']['name'] = time().'_'.$file['logo']['name'];
+
 			$vet_arr = array(
 				'user_id' => $id, 
 				'specialization_id' => $vet["specialization_id"],
@@ -105,13 +108,31 @@
 						'pet_type_id' => $pet_type_id,
 					);
 
-					$check2 = $db->db_query("INSERT INTO ".$this->vet_pet_table." ?e ", $pet_type_arr);
+					$db->db_query("INSERT INTO ".$this->vet_pet_table." ?e ", $pet_type_arr);
 				};
 				// vet upload image
 				
 				$upload_result = $filesystem->fn_upload($file['logo']);
 				$images->fn_update_image($upload_result, $new_vet_id, 'vet');
+
+
+				/* START MULTIPLE IMAGE UPLOAD */
+				$fileArray = $filesystem->fn_arrange_array($file['vetimage']);
+
+				foreach($fileArray as $image){
+					$arr = [ 
+						'vet_id' => $new_vet_id,
+						'image' => time().'_'.$image['name'],
+						'date' => time()
+					];
+
+					$sql = $db->db_query("INSERT INTO ".$this->vet_images." ?e" , $arr);
+
+					$upload_result = $filesystem->fn_upload($image);
+					$images->fn_update_image($upload_result, $new_vet_id, 'vet_images');
+				}
 				
+				/* END MULTIPLE IMAGE UPLOAD */
 				return true;
 			}
 			return false;
@@ -146,9 +167,7 @@
 			}
 			return false;
 		}
-		function test(){
-			echo 'ok';
-		}
+
 		function exists($key, $value, $exclude_id=0){
 			global $db;
 

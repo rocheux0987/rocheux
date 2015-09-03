@@ -148,8 +148,11 @@ if($_POST){
 				break;
 		}
 	}else if($_GET['act'] == 'third step'){
+
 		$id = $user_controller->register($_POST , $_FILES , $_POST['reg_form']['user_type']);
+
 		$sql = $db->db_get_array('SELECT country , status , email , first_name , last_name , type , user_id FROM ?:users WHERE user_id = ?s' , $id);
+		
 		
 		//LOGIN AREA
 		$response["status"] = 1;
@@ -164,6 +167,7 @@ if($_POST){
 			$_SESSION['pet_data'] ['pet_id'] = $pet[0]['pet_id'];
 			$_SESSION['pet_data'] ['pet_name'] = $pet[0]['name'];
 		}
+		
 
 		//redirect to home
 		echo '<script>window.location.reload();</script>';

@@ -116,6 +116,9 @@ class images{
 		}elseif ($type == 'vet'){
 			$table = '?:vets';
 			$key = 'vet_id';
+		}elseif($type == 'vet_images'){
+			$table = '?:vet_images';
+			$key = 'image_id';
 		}else{
 			return false;
 		}
