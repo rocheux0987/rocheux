@@ -116,9 +116,9 @@ $(document).ready(function(){
                         <label></label>
                         <div class="controls">
                             <input type="email" id="email1" name="reg_form[email]" data-status="no" class="validation_check email_check" value="{$reg_form.email}" placeholder="{$lang.email_address}" required="required">
-                            <div class="valmsg arrow_left hide">
-                                <small></small>
-                            </div>
+                        </div>
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
                         </div>
                     </div>
 

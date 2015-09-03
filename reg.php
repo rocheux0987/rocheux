@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_SESSION['user_data'])){
-	$common->redirect("home");
+	header("refresh:");	
 }
 
 #Controllers
@@ -150,7 +150,7 @@ if($_POST){
 		}
 
 		//redirect to home
-		header("refresh:");	
+		echo '<script>window.location.reload();</script>';
 	}
 
 }else{
