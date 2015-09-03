@@ -3,7 +3,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-
+    $('.hide').hide();
 	$(document).on('change' , '#country' ,function(){
 		var country = $(this).val();	
 		var url     = '{/literal}{"reg.php"|seo_url}{literal}/?act='+country;
@@ -42,7 +42,7 @@ $(document).ready(function(){
 
         $('.validation_check').each(function(){
             if($(this).val() == ''){
-                $(this).next().show().find('small').html('required');
+                $(this).prev().show().find('small').html('required');
                 error = true;
             }
         });
@@ -59,10 +59,10 @@ $(document).ready(function(){
             data: { email : ito.val() } ,
             success: function(response){
                 if(response != '1'){
-                    ito.next().hide();
+                    ito.prev().show().find('small').html(" Email is Available");
                     ito.attr('data-status' , 'ok');
                 }else{  
-                    ito.next().show().find('small').html(" Email is not Available");
+                    ito.prev().show().find('small').html(" Email is not Available");
                     ito.attr('data-status' , 'no');
                 }
             }
@@ -73,10 +73,10 @@ $(document).ready(function(){
     $(document).on('focusout' , '#email2' , function(){
 
         if($(this).val() == $('#email1').val()){
-            $(this).next().hide();
+            $(this).prev().hide();
             $(this).attr('data-status' , 'ok');
         }else{
-            $(this).next().show().find('small').html(" Email is not match");
+            $(this).prev().show().find('small').html(" Email is not match");
             $(this).attr('data-status' , 'no');
         }
 
@@ -85,10 +85,10 @@ $(document).ready(function(){
 
     $(document).on('focusout' , '#pass1' , function(){
         if($(this).val().length < 8){
-            $(this).next().show().find('small').html("Password must Contain atleast 8 Characters");
+            $(this).prev().show().find('small').html("Password must Contain atleast 8 Characters");
             $(this).attr('data-status' , 'no');
         }else{
-            $(this).next().hide();
+            $(this).prev().hide();
             $(this).attr('data-status' , 'ok');
         }
     });
@@ -113,65 +113,61 @@ $(document).ready(function(){
                 <!-- email address -->
                 <div class="padside left text-left">
                     <div class="control-group">
-                        <label></label>
                         <div class="controls">
+                            <div class="valmsg arrow_left hide">
+                                <small></small>
+                            </div>
                             <input type="email" id="email1" name="reg_form[email]" data-status="no" class="validation_check email_check" value="{$reg_form.email}" placeholder="{$lang.email_address}" required="required">
-                        </div>
-                        <div class="valmsg arrow_left hide">
-                            <small></small>
                         </div>
                     </div>
 
                   <!-- confirm email address -->
                     <div class="control-group">
-                        <label></label>
                         <div class="controls">
-                            <input type="email" id="email2" name="email2" data-status="no" class="validation_check email_check" placeholder="{$lang.confirm_email_address}" required="required">
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
+                            <input type="email" id="email2" name="email2" data-status="no" class="validation_check email_check" placeholder="{$lang.confirm_email_address}" required="required">
                         </div>
                     </div>
 
                       <!-- password -->
                     <div class="control-group">
-                        <label for="pass1"></label>
                         <div class="controls">
-                            <input type="password" name="reg_form[password]" class="validation_check email_check" data-status="no" id="pass1" placeholder="{$lang.password}" required >
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
+                            <input type="password" name="reg_form[password]" class="validation_check email_check" data-status="no" id="pass1" placeholder="{$lang.password}" required >
                         </div>
                     </div>
  
                      <!-- first name -->
                     <div class="control-group">
-                        <label></label>
                         <div class="controls">
-                            <input type="text" name="reg_form[first_name]" class="validation_check" value="{$reg_form.first_name}" placeholder="{$lang.first_name}" required="required">
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
+                            <input type="text" name="reg_form[first_name]" class="validation_check" value="{$reg_form.first_name}" placeholder="{$lang.first_name}" required="required">
                         </div>
                     </div>
 
                     <!-- last name -->
                     <div class="control-group">
-                        <label></label>
                         <div class="controls">
-                            <input type="text" name="reg_form[last_name]" class="validation_check" value="{$reg_form.last_name}" placeholder="{$lang.last_name}" required="required">
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
+                            <input type="text" name="reg_form[last_name]" class="validation_check" value="{$reg_form.last_name}" placeholder="{$lang.last_name}" required="required">
                         </div>
                     </div>
 
                     <!-- address -->
                     <div class="control-group">
-                        <label></label>
                         <div class="controls">
+                            <div class="valmsg arrow_left hide">
+                                <small></small>
+                            </div>
                             <input type="text" name="reg_form[address]" class="validation_check" value="{$reg_form.address}" placeholder="{$lang.address}" id="address_map" readonly>
-                            <!-- <button data-target="#us6-dialog" data-toggle="modal" class="btn btn-success">Change Location</button> -->
                         </div>
                     </div>
 
@@ -207,12 +203,11 @@ $(document).ready(function(){
 
                     <!-- phone # -->
                     <div class="control-group">
-                        <label></label>
                         <div class="controls">
-                            <input type="text" name="reg_form[phone]" class="validation_check" value="{$reg_form.phone}" placeholder="{$lang.mobile_phone}">
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
+                            <input type="text" name="reg_form[phone]" class="validation_check" value="{$reg_form.phone}" placeholder="{$lang.mobile_phone}">
                         </div>
                     </div>
 
@@ -224,9 +219,11 @@ $(document).ready(function(){
 
                     <!-- country -->
                     <div class="control-group">
-                        <label></label>
                         <div class="controls">
-                            <select id="country" name="reg_form[country]">
+                            <div class="valmsg arrow_left hide">
+                                <small></small>
+                            </div>
+                            <select id="country" class="validation_check" name="reg_form[country]">
                                 <option value="">-- Select {$lang.country} --</option>
                                 {foreach name="results" from=$country item=row }
                                     <option value="{$row.code}"  {if $reg_form.country eq $row.code} selected="selected"{/if} >{$row.country}</option>
@@ -244,6 +241,9 @@ $(document).ready(function(){
                     <div class="control-group">
                         <label></label>
                         <div class="controls">
+                            <div class="valmsg arrow_left hide">
+                                <small></small>
+                            </div>
                             <input type="text" class="validation_check" name="reg_form[city]" placeholder="{$lang.city}">
                         </div>
                     </div>

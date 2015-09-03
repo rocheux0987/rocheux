@@ -112,6 +112,10 @@ select option:first-child{
 input.datepicker {
   width: 100%;
 }
+.valmsg{
+  padding: 5px;
+}
+
 
 /*===HEADER===*/
 .header {

@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_SESSION['user_data'])){
-	header("refresh:");	
+	$common->redirect("home");
 }
 
 #Controllers
@@ -35,7 +35,11 @@ if(isset($_POST['act'])){
 	switch ($type) {
 		case 'pet':
 			if(count($breed) > 0){
-					echo '<select name="petreg_form[breed_id]" class="pet" data-type="breed"> ';
+					echo '
+						<div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>';
+					echo '<select name="petreg_form[breed_id]" class="pet validation_check" data-type="breed"> ';
 					echo '<option value="">- SELECT BREED -</option>';
 					foreach ($breed as $key => $row) {
 						echo '<option value="'.$row['breed_id'].'">'.$row['value'].'</option>';
@@ -47,7 +51,11 @@ if(isset($_POST['act'])){
 			break;
 		case 'breed':
 			if(count($food) > 0){
-					echo '<select name="petreg_form[food_id]" class="pet" data-type="food">';
+					echo '
+						<div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>';
+					echo '<select name="petreg_form[food_id]" class="pet validation_check" data-type="food">';
 					echo '<option value="">- SELECT FOOD -</option>';
 					foreach ($food as $key => $row) {
 						echo '<option value="'.$row['food_id'].'">'.$row['value'].'</option>';
@@ -59,7 +67,11 @@ if(isset($_POST['act'])){
 			break;
 		case 'food':
 			if(count($brand) > 0){
-					echo '<select name="petreg_form[food_brand_id]" class="pet" data-type="foodbrand">';
+					echo '
+						<div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>';
+					echo '<select name="petreg_form[food_brand_id]" class="pet validation_check" data-type="foodbrand">';
 					echo '<option value="">- SELECT BRAND -</option>';
 					foreach ($brand as $key => $row) {
 						echo '<option value="'.$row['food_brand_id'].'">'.$row['value'].'</option>';
@@ -71,7 +83,11 @@ if(isset($_POST['act'])){
 			break;
 			case 'foodbrand':
 			if(count($style) > 0){
-					echo '<select name="petreg_form[food_style_id]" class="pet" data-type="foodstyle">';
+					echo '
+						<div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>';
+					echo '<select name="petreg_form[food_style_id]" class="pet validation_check" data-type="foodstyle">';
 					echo '<option value="">- SELECT STYLE -</option>';
 					foreach ($style as $key => $row) {
 						echo '<option value="'.$row['food_style_id'].'">'.$row['value'].'</option>';
@@ -85,8 +101,6 @@ if(isset($_POST['act'])){
 			# code...
 			break;
 	}
-
-	
 	die();
 }
 
@@ -142,6 +156,7 @@ if($_POST){
 		$_SESSION['user_data']['user_id'] = $sql[0]['user_id'];
 		$_SESSION['user_data']['user_type'] = $sql[0]['type'];
 		$_SESSION['user_data']['country'] = $sql[0]['country'];
+		$_SESSION['user_data']['user_name'] = $sql[0]['first_name'].' '.$sql[0]['last_name'];
 
 		if($sql[0]['type'] == 'B'){
 			$pet = $db->db_get_array('SELECT name , pet_id FROM ?:pets WHERE user_id = ?i ORDER BY pet_id ASC LIMIT 1' , $sql[0]['user_id']);
@@ -160,13 +175,21 @@ if($_POST){
 		$state = $db->db_get_array('SELECT DISTINCT state, code FROM ?:states INNER JOIN ?:states_lang ON ?:states.state_id = ?:states_lang.state_id WHERE country_code = ?s', $country);
 		
 		if(count($state) > 0){
-			echo '<select name="reg_form[state]">';
+			echo '
+				<div class="valmsg arrow_left hide">
+                    <small></small>
+                </div>';
+			echo '<select class="validation_check" name="reg_form[state]">';
 			foreach ($state as $key => $row) {
 				echo '<option value="'.$row['code'].'">'.$row['state'].'</option>';
 			}
 			echo '</select>';
 		}else{
-			echo '<input type="text" name="reg_form[state]" placeholder="State">';
+			echo '
+				<div class="valmsg arrow_left hide">
+                    <small></small>
+                </div>';
+			echo '<input type="text" class="validation_check" name="reg_form[state]" placeholder="State">';
 		}
 		die();
 	}

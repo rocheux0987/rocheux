@@ -13,7 +13,8 @@ if ($_GET["act"] == "login"){
 		$_SESSION['user_data']['user_id'] = $sql[0]['user_id'];
 		$_SESSION['user_data']['user_type'] = $sql[0]['type'];
 		$_SESSION['user_data']['country'] = $sql[0]['country'];
-
+		$_SESSION['user_data']['user_name'] = $sql[0]['first_name'].' '.$sql[0]['last_name'];
+		
 		if($sql[0]['type'] == 'B'){
 			$pet = $db->db_get_array('SELECT name , pet_id FROM ?:pets WHERE user_id = ?i ORDER BY pet_id ASC LIMIT 1' , $sql[0]['user_id']);
 			$_SESSION['pet_data'] ['pet_id'] = $pet[0]['pet_id'];

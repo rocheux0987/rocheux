@@ -41,7 +41,7 @@ if ($_POST){
 #Methods
 if ($_GET["act"] == "edit"){
 	#Method: EDIT
-	
+
 	#Section title
 	$smarty->assign("site_module", "Administrators");
 	$smarty->assign("site_action", "Edit");

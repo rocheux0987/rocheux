@@ -29,6 +29,9 @@ require_once(_CORE_DIR_."friendly.core.php");
 #LANGS initialization
 $languages = new languages_core();
 
+#Notifications initialization
+$notifications = new notifications();
+
 require_once(_CORE_DIR_."sessions.core.php");
 
 #Start session mechanism
@@ -51,10 +54,6 @@ if (!$friendly->page){
 
 #LANGS Smarty assign
 $smarty->assign("lang", $languages->langs[_CLIENT_LANGUAGE_]);
-
-
-
-//----------------- GLOBAL ------------------//
 
 $smarty->assign('user_data' , $_SESSION['user_data']);
 ?>

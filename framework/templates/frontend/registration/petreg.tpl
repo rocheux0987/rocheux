@@ -35,7 +35,19 @@ $(document).ready(function(){
 	});
 
     $(document).on('click' , '.btn-register' , function(){
-        $('#petreg_form').trigger('submit');
+
+        var error = false;
+
+        $('.validation_check').each(function(){
+            if($(this).val() == ''){
+                $(this).prev().show().find('small').html('required');
+                error = true;
+            }
+        });
+        
+        if(error == false){
+            $('#petreg_form').trigger('submit');
+        }
     });
 
     $(document).on('click' , '.browse' , function(){
@@ -72,22 +84,31 @@ $(document).ready(function(){
                <!-- {$lang.pet_name} -->
                 <div class="control-group"> 
                     <div class="controls">
-                        <input type="text" name="petreg_form[name]" placeholder="{$lang.pet_name}">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>
+                        <input type="text" name="petreg_form[name]" class="validation_check" placeholder="{$lang.pet_name}">
                     </div>
                 </div>
 
                 <!-- {$lang.howtocall} -->
                 <div class="control-group">
                     <div class="controls">
-                        <input type="text" name="petreg_form[howtocall]" placeholder="{$lang.howtocall}">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>
+                        <input type="text" name="petreg_form[howtocall]" class="validation_check" placeholder="{$lang.howtocall}">
                     </div>
                 </div>
 
                 <!-- {$lang.gender} -->
                 <div class="control-group">
                     <div class="controls">
-                        <select id="gender" name="petreg_form[gender]">
-                            <option value="">- SELECT {$lang.gender} -</option>
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>
+                        <select id="gender" class="validation_check" name="petreg_form[gender]">
+                            <option value="">- Select {$lang.gender} -</option>
                             <option value="M">Male</option>
                             <option value="F">Female</option>
                         </select>
@@ -97,8 +118,11 @@ $(document).ready(function(){
                 <!-- {$lang.pet_type} -->
                 <div class="control-group">
                     <div class="controls">
-                        <select class="pet" data-type="pet" name="petreg_form[pet_type_id]">
-                            <option value="">- SELECT {$lang.pet_type} -</option>
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                         </div>
+                        <select class="pet validation_check" data-type="pet" name="petreg_form[pet_type_id]">
+                            <option value="">- Select {$lang.pet_type} -</option>
                             {foreach name="results" from=$pet item=row }
                                 <option value="{$row.pet_type_id}">{$row.value}</option>
                             {/foreach}
@@ -133,14 +157,20 @@ $(document).ready(function(){
                 <!-- {$lang.weight} default value = kilo -->
                 <div class="control-group left">
                     <div class="controls">
-                        <input type="number" name="petreg_form[weight]" placeholder="{$lang.weight} in kilo">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                         </div>
+                        <input type="number" name="petreg_form[weight]" class="validation_check" placeholder="{$lang.weight} in kilo">
                     </div>
                 </div>
 
                 <!-- {$lang.height} default value = centimeters -->
                 <div class="control-group right">
                     <div class="controls">
-                        <input type="number" name="petreg_form[height]" placeholder="{$lang.height} in cm">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                         </div>
+                        <input type="number" name="petreg_form[height]" class="validation_check" placeholder="{$lang.height} in cm">
                     </div>
                 </div>
                 <br clear="all"/>
@@ -148,7 +178,10 @@ $(document).ready(function(){
                 <!-- {$lang.feeding_time} -->
                 <div class="control-group">
                     <div class="controls">
-                        <input type="text" name="petreg_form[feeding_time]" placeholder="{$lang.feeding_time}">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                         </div>
+                        <input type="text" name="petreg_form[feeding_time]" class="validation_check" placeholder="{$lang.feeding_time}">
                     </div>
                 </div>
 
@@ -156,7 +189,10 @@ $(document).ready(function(){
                 <div class="control-group">
                     <label>Birthdate:</label>
                     <div class="controls">
-                        <input type="date" class="datepicker" name="petreg_form[birthdate]" value="timestamp">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                         </div>
+                        <input type="date" class="datepicker validation_check" name="petreg_form[birthdate]" value="timestamp">
                     </div>
                 </div>
 

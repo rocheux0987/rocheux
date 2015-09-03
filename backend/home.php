@@ -20,7 +20,6 @@ $notifications->assign();
 #Smarty assigns
 $smarty->assign("breadcrumb", $breadcrumb);
 
-
 #Smarty TPLs
 $smarty->assign("section_content", "main.tpl");
 $smarty->display(_TPL_BACKEND_DIR_."layout.tpl");

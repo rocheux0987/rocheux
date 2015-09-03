@@ -85,7 +85,7 @@ class session{
 				$_SESSION['_validator_data'] = $validator_data;
 			} else {
 				if ($_SESSION['_validator_data'] != $validator_data) {
-					//$this->session_regenerate_id();
+					session_regenerate_id();
 					$_SESSION = array();
 				}
 			}
@@ -151,9 +151,16 @@ class session{
 		// new session-expire-time
 		$new_expire = time() + $this->session_lifetime;
 		$session_table = $this->get_session_table($id);
+
+		$_row = array(
+			'session_id' => $id,
+			'area' => $area,
+			'expiry' => $new_expire,
+			'data' => $data
+			);
 		
-		#$db->db_query("REPLACE INTO ".$session_table." ?e", $_row);
-		$db->db_query("REPLACE INTO ".$session_table." (session_id, area, expiry,data) VALUES(?s, ?s, ?i, ?s)", $id, $area, $new_expire, $data);
+		$db->db_query("REPLACE INTO ".$session_table." ?e", $_row);
+		#$db->db_query("REPLACE INTO ".$session_table." (session_id, area, expiry,data) VALUES(?s, ?s, ?i, ?s)", $id, $area, $new_expire, $data);
 		$saved = true;
 		return $saved;
 	}

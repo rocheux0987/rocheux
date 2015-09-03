@@ -3,27 +3,27 @@
 <script type="text/javascript">
 function validate_form(){
 
-	//Name
-	if ($("#name").val() == ""){
-		$("#name").addClass("field-error");
-		$("#name").focus();
+	//Description
+	if ($("#description").val() == ""){
+		$("#description").addClass("field-error");
+		$("#description").focus();
 		return false;
 	}else{
-		$("#name").removeClass("field-error");
+		$("#description").removeClass("field-error");
 	}
+
+    if ($("#url").val() == ""){
+    $("#url").addClass("field-error");
+    $("#url").focus();
+    return false;
+  }else{
+    $("#url").removeClass("field-error");
+  }
 	
-	//Value
-	if ($("#value").val() == ""){
-		$("#value").addClass("field-error");
-		$("#value").focus();
-		return false;
-	}else{
-		$("#value").removeClass("field-error");
-	}
-	
+
 	$(".form-actions").html("<img src='img/loading.gif' />");
 	
-	action = "{/literal}?act=add{literal}";
+	action = "?act=add&";
 	
 	setTimeout(function(){ 
 		$("#form-primary").attr({"action" : action});
@@ -47,15 +47,15 @@ function validate_form(){
          <form class="form-horizontal" id="form-primary" method="POST">
             <fieldset>
                <div class="control-group">
-                  <label class="control-label" for="name">Language variable </label>
+                  <label class="control-label" for="description">Description</label>
                   <div class="controls">
-                     <input type="text" class="span6" id="name" name="form_data[name]">
+                     <input type="text" class="span6" id="description" name="form_data[description]">
                   </div>
                </div>
                <div class="control-group">
-                  <label class="control-label" for="name">Value </label>
+                  <label class="control-label" for="url"> Url </label>
                   <div class="controls">
-                     <input type="text" class="span6" id="value" name="form_data[value]">
+                     <input type="text" class="span6" id="url" name="form_data[url]" placeholder= "eg. <description>.php?act=<action>">
                   </div>
                </div>
                <div class="form-actions">
@@ -64,7 +64,6 @@ function validate_form(){
                </div>
                
             </fieldset>
-            <input type="hidden" name="lang_code" id="lang_code" value="{$smarty.const._CLIENT_LANGUAGE_}" />
          </form>
       </div>
    </div>
