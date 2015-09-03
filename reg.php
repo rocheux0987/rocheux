@@ -110,7 +110,9 @@ if($_POST){
 
 	$smarty->assign("reg_form" , $_POST['reg_form']);
 
-	if($_GET['act'] == 'second step'){
+	if($_GET['act'] == 'first step'){
+		$smarty->assign("prev", true);
+	}else if($_GET['act'] == 'second step'){
 		switch ($_POST['reg_form']['user_type']) {
 			case 'B':
 				$smarty->assign("section_title", "Register - Add Pet Details");
@@ -147,8 +149,6 @@ if($_POST){
 		}
 	}else if($_GET['act'] == 'third step'){
 		$id = $user_controller->register($_POST , $_FILES , $_POST['reg_form']['user_type']);
-
-
 		$sql = $db->db_get_array('SELECT country , status , email , first_name , last_name , type , user_id FROM ?:users WHERE user_id = ?s' , $id);
 		
 		//LOGIN AREA

@@ -6,13 +6,23 @@ $(document).ready(function(){
     $(document).on('click' , '.browse' , function(){
         $(this).prev().trigger('click');
     });
+    $(document).on('click' , '.btn-prev' , function(){
+        var a = confirm("Are you sure?");
 
+        if(a == true){
+            $('#form_prev').trigger('submit');
+        }
+    });
     $(document).on('click' , '.btn-register' , function(){
         var error = false;
 
         $('.validation_check').each(function(){
+            $(this).removeClass('error_form').prev().hide();;
+        });
+
+        $('.validation_check').each(function(){
             if($(this).val() == ''){
-                $(this).prev().show().find('small').html('required');
+                $(this).prev().show().find('small').html('Required').css({ color : "#ff0000"});
                 error = true;
             }
         });
@@ -33,6 +43,20 @@ $(document).ready(function(){
         </div>
 
         <div class="content">
+            <form method="post" id="form_prev" action='{"reg.php"|seo_url}/?act=first step' >
+                <input type="hidden" name="reg_form[email]" value="{$reg_form.email}">
+                <input type="hidden" name="reg_form[password]" value="{$reg_form.password}">
+                <input type="hidden" name="reg_form[first_name]" value="{$reg_form.first_name}">
+                <input type="hidden" name="reg_form[last_name]" value="{$reg_form.last_name}">
+                <input type="hidden" name="reg_form[address]" value="{$reg_form.address}">
+                <input type="hidden" name="reg_form[lat]" value="{$reg_form.lat}">
+                <input type="hidden" name="reg_form[lon]" value="{$reg_form.lon}">
+                <input type="hidden" name="reg_form[phone]" value="{$reg_form.phone}">
+                <input type="hidden" name="reg_form[country]" value="{$reg_form.country}">
+                <input type="hidden" name="reg_form[city]" value="{$reg_form.city}">
+                <input type="hidden" name="reg_form[state]" value="{$reg_form.state}">
+                <input type="hidden" name="reg_form[user_type]" value="{$reg_form.user_type}">
+            </form>
             <form method="post" id="mer_form" action='{"reg.php"|seo_url}/?act=third step' enctype="multipart/form-data">
                 <input type="hidden" name="reg_form[email]" value="{$reg_form.email}">
                 <input type="hidden" name="reg_form[password]" value="{$reg_form.password}">

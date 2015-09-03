@@ -33,6 +33,11 @@ $(document).ready(function(){
 
     $(document).on('click' , '.btn-next' , function(){
         var error = false;
+        
+        $('.validation_check').each(function(){
+            $(this).removeClass('error_form').prev().hide();;
+        });
+
 
         $('.email_check').each(function(){
             if($(this).attr('data-status') != 'ok'){
@@ -42,7 +47,8 @@ $(document).ready(function(){
 
         $('.validation_check').each(function(){
             if($(this).val() == ''){
-                $(this).prev().show().find('small').html('required');
+                $(this).prev().show().find('small').html('Required').css({ color : "#ff0000"});
+                $(this).addClass('error_form');
                 error = true;
             }
         });
@@ -59,10 +65,14 @@ $(document).ready(function(){
             data: { email : ito.val() } ,
             success: function(response){
                 if(response != '1'){
-                    ito.prev().show().find('small').html(" Email is Available");
+                    ito.prev().show().find('small').html(" Email is Available").css({ color : "#00ff00"});
+                    ito.removeClass('error_form');
+                    ito.addClass('success_form');
                     ito.attr('data-status' , 'ok');
                 }else{  
-                    ito.prev().show().find('small').html(" Email is not Available");
+                    ito.prev().show().find('small').html(" Email is not Available").css({ color : "#ff0000"});
+                    ito.removeClass('success_form');
+                    ito.addClass('error_form');
                     ito.attr('data-status' , 'no');
                 }
             }
@@ -74,9 +84,12 @@ $(document).ready(function(){
 
         if($(this).val() == $('#email1').val()){
             $(this).prev().hide();
+            $(this).removeClass('error_form');
             $(this).attr('data-status' , 'ok');
         }else{
-            $(this).prev().show().find('small').html(" Email is not match");
+            $(this).prev().show().find('small').html(" Email is not match").css({ color : "#ff0000"});
+            $(this).removeClass('success_form');
+            $(this).addClass('error_form');
             $(this).attr('data-status' , 'no');
         }
 
@@ -85,22 +98,37 @@ $(document).ready(function(){
 
     $(document).on('focusout' , '#pass1' , function(){
         if($(this).val().length < 8){
-            $(this).prev().show().find('small').html("Password must Contain atleast 8 Characters");
+            $(this).prev().show().find('small').html("Password must Contain atleast 8 Characters").css({ color : "#ff0000" });
+            $(this).removeClass('success_form');
+            $(this).addClass('error_form');
             $(this).attr('data-status' , 'no');
         }else{
             $(this).prev().hide();
+            $(this).removeClass('error_form');
             $(this).attr('data-status' , 'ok');
         }
     });
-
-
 
 });
 
 
 </script>
 {/literal}
-
+{if $prev eq true}
+    {literal}
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#email1').attr('data-status' , 'ok');
+                var country = $("#country").val();    
+                var url     = '{/literal}{"reg.php"|seo_url}{literal}/?act='+country;
+                
+                $.post(url , function(data){
+                    $('#state_div').html(data);
+                });
+            });
+        </script>      
+    {/literal}      
+{/if}
 <div class="signup-content">
     <img src="{$smarty.const._IMAGES_URL_}reg-gen-icon.png" class="genicon">
     <div class="general">
@@ -244,7 +272,7 @@ $(document).ready(function(){
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="text" class="validation_check" name="reg_form[city]" placeholder="{$lang.city}">
+                            <input type="text" class="validation_check" name="reg_form[city]" value="{$reg_form.city}" placeholder="{$lang.city}">
                         </div>
                     </div>
 
