@@ -1,7 +1,8 @@
 <?php
 
 if(isset($_SESSION['user_data'])){
-	$common->redirect("home");
+	$common->redirect("../home");
+	exit();
 }
 
 #Controllers

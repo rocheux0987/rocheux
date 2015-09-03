@@ -9,7 +9,18 @@ $(document).ready(function(){
     });
 
     $(document).on('click' , '.btn-register' , function(){
-        $('#vetreg_form').trigger('submit');
+        var error = false;
+
+        $('.validation_check').each(function(){
+            if($(this).val() == ''){
+                $(this).prev().show().find('small').html('required');
+                error = true;
+            }
+        });
+
+        if(error == false){
+            $('#vetreg_form').trigger('submit');
+        }
     });
 });
 </script>
@@ -40,7 +51,10 @@ $(document).ready(function(){
                <!-- {$lang.specialization} -->
                 <div class="control-group">
                     <div class="controls">
-                        <select id="spec" name="vetreg_form[specialization_id]">
+                        <select id="spec" name="vetreg_form[specialization_id]" class="validation_check">
+                            <div class="valmsg arrow_left hide">
+                                <small></small>
+                            </div>
                             <option value="">- SELECT {$lang.specialization} --</option>
                             {foreach name="results" from=$spec item=row }
                                 <option value="{$row.specialization_id}">{$row.value}</option>
@@ -52,28 +66,40 @@ $(document).ready(function(){
                 <!-- {$lang.contact_number} -->
                 <div class="control-group">
                     <div class="controls">
-                        <input type="text" name="vetreg_form[contact_number]" placeholder="{$lang.contact_number}">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>
+                        <input type="text" name="vetreg_form[contact_number]" class="validation_check" placeholder="{$lang.contact_number}">
                     </div>
                 </div>
 
                 <!-- {$lang.work_schedules} -->
                 <div class="control-group">
                     <div class="controls">
-                        <input type="text" name="vetreg_form[work_schedules]" placeholder="{$lang.work_schedules}">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>
+                        <input type="text" name="vetreg_form[work_schedules]" class="validation_check" placeholder="{$lang.work_schedules}">
                     </div>
                 </div>                
 
                 <!--{$lang.vet_association} -->
                 <div class="control-group">
                     <div class="controls">
-                        <input type="text" name="vetreg_form[vet_association]" placeholder="{$lang.vet_association}">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>
+                        <input type="text" name="vetreg_form[vet_association]" class="validation_check" placeholder="{$lang.vet_association}">
                     </div>
                 </div>
 
                 <!-- {$lang.licenses} -->
                 <div class="control-group">
                     <div class="controls">
-                        <input type="text" name="vetreg_form[licenses]" placeholder="{$lang.licenses}">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>
+                        <input type="text" name="vetreg_form[licenses]" class="validation_check" placeholder="{$lang.licenses}">
                     </div>
                 </div>
 
@@ -81,6 +107,9 @@ $(document).ready(function(){
                 <div class="control-group">
                     <label>{$lang.pet_type_id}: </label>
                     <div class="controls">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>
                         {foreach name="results" from=$pet item=row }
                         <input type="checkbox" name="vetreg_form[pet_type_id][]" value="{$row.pet_type_id}">{$row.value} &nbsp;
                         {/foreach}
@@ -90,7 +119,10 @@ $(document).ready(function(){
                 <!-- {$lang.notes} -->
                 <div class="control-group">
                     <div class="controls">
-                        <textarea name="vetreg_form[notes]" placeholder="{$lang.notes}"></textarea>
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>
+                        <textarea name="vetreg_form[notes]" class="validation_check" placeholder="{$lang.notes}"></textarea>
                     </div>
                 </div>
 

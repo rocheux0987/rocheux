@@ -8,7 +8,18 @@ $(document).ready(function(){
     });
 
     $(document).on('click' , '.btn-register' , function(){
-        $('#mer_form').trigger('submit');
+        var error = false;
+
+        $('.validation_check').each(function(){
+            if($(this).val() == ''){
+                $(this).prev().show().find('small').html('required');
+                error = true;
+            }
+        });
+
+        if(error == false){
+            $('#mer_form').trigger('submit');
+        }
     });
 });
 </script>
@@ -39,7 +50,10 @@ $(document).ready(function(){
                 <div class="control-group">
                     <label>Store Name:</label>
                     <div class="controls">
-                        <input type="text" name="merc_form[store_name]">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>
+                        <input type="text" name="merc_form[store_name]" class="validation_check">
                     </div>
                 </div>
 
@@ -47,7 +61,10 @@ $(document).ready(function(){
                 <div class="control-group">
                     <label>Contact Number:</label>
                     <div class="controls">
-                        <input type="text" name="merc_form[contact_number]">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>
+                        <input type="text" name="merc_form[contact_number]" class="validation_check">
                     </div>
                 </div>
 
@@ -55,7 +72,10 @@ $(document).ready(function(){
                 <div class="control-group">
                     <label>Work Schedules:</label>
                     <div class="controls">
-                        <input type="text" name="merc_form[work_schedules]">
+                        <div class="valmsg arrow_left hide" >
+                            <small></small>
+                        </div>
+                        <input type="text" name="merc_form[work_schedules]" class="validation_check">
                     </div>
                 </div>
 
@@ -63,7 +83,10 @@ $(document).ready(function(){
                 <div class="control-group">
                     <label>Website:</label>
                     <div class="controls">
-                        <input type="text" name="merc_form[website]">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div> 
+                        <input type="text" name="merc_form[website]" class="validation_check">
                     </div>
                 </div>
                 
