@@ -684,6 +684,16 @@ a.browse {
   padding: 5px 23px;
 }
 
+.success input {
+  border: 1px solid #00ff00;
+  color: #00ff00;
+}
+
+.formerror input {
+  border: 1px solid #ff0000;
+  color: #ff0000;
+}
+
 /*=VET REG=*/
 .signup-content.vet > img {
   margin-left: 20px;
