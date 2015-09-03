@@ -484,6 +484,10 @@ img.slick-next {
   font-size: 15px;
 }
 
+.newsfeed-cont {
+  padding: 0 25px 20px;
+}
+
 /*===RIGHT NAV===*/
 .right-nav {
   width: 16.66666667%;
