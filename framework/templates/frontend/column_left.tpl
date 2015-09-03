@@ -45,4 +45,14 @@
             <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}findneighbors.png" class="icon"><span>Find My Neighbours</span></a></li>
         </ul>
     </div>
+
+    <div class="leftbox whitebox">
+        <label class="text-muted">WHAT TO WATCH</label>
+        <ul>
+            <li><a href="{"myuploads.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}upload.png" class="icon"><span>My Uploads</span></a></li>
+            <li><a href="{"petoftheweek.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}trophy.png" class="icon"><span>Pet of the Week</span></a></li>
+            <li><a href="{"history.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}history.png" class="icon"><span>History</span></a></li>
+            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}ranger.png" class="icon"><span>Rocky Ranger</span></a></li>
+        </ul>
+    </div>
 </div>
