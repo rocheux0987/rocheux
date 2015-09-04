@@ -11,6 +11,8 @@
             infinite: true,
             speed: 500,
             slidesToShow: 1,
+            prevArrow: '<img class="slick-prev" src="{/literal}{$smarty.const._IMAGES_URL_}{literal}/prev_new.png">',
+            nextArrow: '<img class="slick-next" src="{/literal}{$smarty.const._IMAGES_URL_}{literal}/next_new.png">',
             centerMode: true,
             variableWidth: true,
             responsive: [
