@@ -8,6 +8,8 @@
 		var $mer_table = "?:merchants";
 		var $vet_pet_table = "?:vet_pet_types";
 		var $vet_images = "?:vet_images";
+		var $foundations = "?:foundations";
+		var $foundation_image = "?:foundation_images";
 
 		function register($user , $file , $type){
 			global $notifications, $db;
@@ -45,12 +47,60 @@
 				$this->mercregister($user['merc_form'] , $file , $id);
 			}else if($type == 'V'){
 				$this->vetregister($user['vetreg_form'] , $file , $id);
+			}else if($type == 'P'){
+				$this->foundationregister($user['shelter_form'] , $file , $id);
+			}else{
+				return;
 			}
 
 			return $id;
 			
 		}
+		function foundationregister($info , $file , $id){
+			global $notifications, $db , $filesystem , $images;
+			$file['mercimage']['name'] = time().'_'.$file['mercimage']['name'];
 
+			$arr = array(
+				'user_id' => $id,
+				'name' => $info["name"],
+				'contact_number' => $info['contact_number'],
+				'website' => $info['website'],
+				'work_schedules' => $info['work_schedules'],
+				'about' => $info['about'],
+				'mission' => $info['mission'],
+				'image' => $file['mercimage']['name'],
+				'date' => time(),
+				'status' => 'A'
+				);
+			$id = $db->db_query("INSERT INTO ".$this->foundations." ?e ",$arr);
+
+
+			if($id){
+				$upload_result = $filesystem->fn_upload($file['mercimage']);
+				$images->fn_update_image($upload_result, $id, 'foundations');
+
+				/* START MULTIPLE IMAGE UPLOAD */
+				$fileArray = $filesystem->fn_arrange_array($file['storeimage']);
+
+				foreach($fileArray as $image){
+					$arr = [ 
+						'foundation_id' => $id,
+						'image' => time().'_'.$image['name'],
+						'date' => time()
+					];
+
+					$sql = $db->db_query("INSERT INTO ".$this->foundation_image." ?e" , $arr);
+
+					$upload_result = $filesystem->fn_upload($image);
+					$images->fn_update_image($upload_result, $id, 'foundation_image');
+				}
+				
+				/* END MULTIPLE IMAGE UPLOAD */
+				return true;
+			}
+
+			return false;
+		}
 		function petregister($pet , $file , $id){
 			global $notifications, $db , $filesystem,$images;
 			$file['petimage']['name'] = time().'_'.$file['petimage']['name'];

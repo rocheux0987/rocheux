@@ -139,12 +139,12 @@ $(document).ready(function(){
                 <div class="signup-submit right">
                     <div class="control-group left">
                         <div class="controls">
-                            <a href="#" class="btn-next button-primary btn-prev">{$lang.previous}</a> 
+                            <a href="#" class="btn-next button-primary btn-prev">{'previous'|get_lang}</a> 
                         </div>
                     </div>
                     <div class="control-group right">
                         <div class="controls">
-                            <a href="#" class="btn-next button-primary btn-register">{$lang.register}</a>
+                            <a href="#" class="btn-next button-primary btn-register">{'register'|get_lang}</a>
                         </div>
                     </div>
                 </div>

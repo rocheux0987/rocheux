@@ -122,6 +122,12 @@ class images{
 		}elseif($type == 'vet_images'){
 			$table = '?:vet_images';
 			$key = 'image_id';
+		}elseif($type == 'foundations'){
+			$table = '?:foundations';
+			$key = 'user_id';
+		}elseif($type == 'foundation_image'){
+			$table = '?:foundation_images';
+			$key = 'image_id';
 		}else{
 			return false;
 		}

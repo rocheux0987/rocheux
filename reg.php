@@ -151,6 +151,7 @@ if($_POST){
 		}
 	}else if($_GET['act'] == 'third step'){
 
+
 		$id = $user_controller->register($_POST , $_FILES , $_POST['reg_form']['user_type']);
 
 		$sql = $db->db_get_array('SELECT country , status , email , first_name , last_name , type , user_id FROM ?:users WHERE user_id = ?s' , $id);
@@ -172,7 +173,9 @@ if($_POST){
 		
 
 		//redirect to home
-		echo '<script>window.location.reload();</script>';
+		#echo '<script>window.location.reload();</script>';
+
+		
 	}
 
 }else{
