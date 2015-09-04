@@ -174,7 +174,13 @@ if($_POST){
 	}
 
 }else{
+
 	if(isset($_GET['act'])){
+
+		if($_GET['act'] == 'second step'){
+			$common->redirect("../home");
+		}
+
 		$country = $_GET['act']; 
 
 		$state = $db->db_get_array('SELECT DISTINCT state, code FROM ?:states INNER JOIN ?:states_lang ON ?:states.state_id = ?:states_lang.state_id WHERE country_code = ?s', $country);

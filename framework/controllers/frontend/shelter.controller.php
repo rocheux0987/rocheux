@@ -3,7 +3,7 @@
 
 class shelter{
 	var $user_table = "?:users";
-	var $shelter_table = "?:shelter";
+	var $shelter_table = "?:foundation";
 	var $countries_lang_table = "?:countries_lang";
 
 	function get($search = null , $lat = 0 , $lon = 0){

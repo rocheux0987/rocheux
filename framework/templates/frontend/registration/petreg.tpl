@@ -44,7 +44,7 @@ $(document).ready(function(){
 
         $('.validation_check').each(function(){
             if($(this).val() == ''){
-                $(this).prev().show().find('small').html('Required').css({ color : "#ff0000"});
+                $(this).addClass('error_form').prev().show().find('small').html('Required').css({ color : "#ff0000"});
                 error = true;
             }
         });
@@ -180,26 +180,25 @@ $(document).ready(function(){
                     </div>
                 </div>
 
-                <!-- {$lang.weight} default value = kilo -->
-                <div class="control-group left">
+                <!-- {$lang.height} default value = centimeters -->
+                <div class="control-group">
                     <div class="controls">
                         <div class="valmsg arrow_left hide">
                             <small></small>
                          </div>
-                        <input type="number" name="petreg_form[weight]" class="validation_check" placeholder="{$lang.weight} in kilo">
+                       <input type="number" name="petreg_form[weight]"  min="0"  step="1" class="validation_check" value="0" placeholder="{$lang.weight}">
                     </div>
                 </div>
 
-                <!-- {$lang.height} default value = centimeters -->
-                <div class="control-group right">
+                <div class="control-group">
                     <div class="controls">
                         <div class="valmsg arrow_left hide">
                             <small></small>
                          </div>
-                        <input type="number" name="petreg_form[height]" class="validation_check" placeholder="{$lang.height} in cm">
+                        <input type="number" name="petreg_form[height]"  min="0"  step="1" class="validation_check" value="0" placeholder="{$lang.height}">
                     </div>
                 </div>
-                <br clear="all"/>
+
 
                 <!-- {$lang.feeding_time} -->
                 <div class="control-group">
@@ -207,7 +206,7 @@ $(document).ready(function(){
                         <div class="valmsg arrow_left hide">
                             <small></small>
                          </div>
-                        <input type="text" name="petreg_form[feeding_time]" class="validation_check" placeholder="{$lang.feeding_time}">
+                        <input type="text" name="petreg_form[feeding_time]" min="1" class="validation_check" placeholder="{$lang.feeding_time}">
                     </div>
                 </div>
 
@@ -218,7 +217,7 @@ $(document).ready(function(){
                         <div class="valmsg arrow_left hide">
                             <small></small>
                          </div>
-                        <input type="date" class="datepicker validation_check" name="petreg_form[birthdate]" value="timestamp">
+                        <input type="text" class="datepicker validation_check" name="petreg_form[birthdate]">
                     </div>
                 </div>
 
@@ -226,7 +225,7 @@ $(document).ready(function(){
                 <div class="control-group">
                     <label class="imgup">Image:</label>
                     <div class="controls">
-                        <input type="file" name="petimage" id="petimage" class="hidden">
+                        <input type="file" name="petimage" id="petimage" class="hidden" accept="image/*">
                         <a href="javascript:void(0)" class="browse">Browse</a>
                     </div>
                 </div>

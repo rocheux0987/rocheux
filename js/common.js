@@ -1,3 +1,7 @@
+$(function() {
+    $( ".datepicker" ).datepicker();
+});
+
 function popup_open(element_id){
 	$(element_id).show('fast', function() {
 		$(element_id).css({"opacity":"1"});
