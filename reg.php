@@ -132,6 +132,8 @@ if($_POST){
 				break;
 			case 'P':
 				$smarty->assign("section_template", 'registration/foundationreg.tpl');
+				$smarty->assign("section_title", "Register - Pet Foundation Details");
+				$smarty->assign("user_type" , 'P');
 				break;
 			case 'V':
 				$smarty->assign("section_title", "Register - Veterinarian Details");
@@ -195,6 +197,12 @@ if($_POST){
 				echo '<option value="'.$row['code'].'">'.$row['state'].'</option>';
 			}
 			echo '</select>';
+		}else{
+			echo '
+				<div class="valmsg arrow_left hide">
+                    <small></small>
+                </div>';
+            echo '<input type="text" class="validation_check" name="reg_form[state]" placeholder="state">';
 		}
 		die();
 	}

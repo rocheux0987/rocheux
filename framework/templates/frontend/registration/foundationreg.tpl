@@ -6,14 +6,42 @@
         </div>
 
         <div class="content">
+            <form method="post" id="form_prev" action='{"reg.php"|seo_url}/?act=first step' >
+                <input type="hidden" name="reg_form[email]" value="{$reg_form.email}">
+                <input type="hidden" name="reg_form[password]" value="{$reg_form.password}">
+                <input type="hidden" name="reg_form[first_name]" value="{$reg_form.first_name}">
+                <input type="hidden" name="reg_form[last_name]" value="{$reg_form.last_name}">
+                <input type="hidden" name="reg_form[address]" value="{$reg_form.address}">
+                <input type="hidden" name="reg_form[lat]" value="{$reg_form.lat}">
+                <input type="hidden" name="reg_form[lon]" value="{$reg_form.lon}">
+                <input type="hidden" name="reg_form[phone]" value="{$reg_form.phone}">
+                <input type="hidden" name="reg_form[country]" value="{$reg_form.country}">
+                <input type="hidden" name="reg_form[city]" value="{$reg_form.city}">
+                <input type="hidden" name="reg_form[state]" value="{$reg_form.state}">
+                <input type="hidden" name="reg_form[user_type]" value="{$reg_form.user_type}">
+            </form>
             <form method="POST" id="registration_form" action='{"reg.php"|seo_url}/?act=second step'>
+
+                <input type="hidden" name="reg_form[email]" value="{$reg_form.email}">
+                <input type="hidden" name="reg_form[password]" value="{$reg_form.password}">
+                <input type="hidden" name="reg_form[first_name]" value="{$reg_form.first_name}">
+                <input type="hidden" name="reg_form[last_name]" value="{$reg_form.last_name}">
+                <input type="hidden" name="reg_form[address]" value="{$reg_form.address}">
+                <input type="hidden" name="reg_form[lat]" value="{$reg_form.lat}">
+                <input type="hidden" name="reg_form[lon]" value="{$reg_form.lon}">
+                <input type="hidden" name="reg_form[phone]" value="{$reg_form.phone}">
+                <input type="hidden" name="reg_form[country]" value="{$reg_form.country}">
+                <input type="hidden" name="reg_form[city]" value="{$reg_form.city}">
+                <input type="hidden" name="reg_form[state]" value="{$reg_form.state}">
+                <input type="hidden" name="reg_form[user_type]" value="{$reg_form.user_type}">
+
                 <!-- shelter name -->
                 <div class="control-group">
                     <div class="controls">
                         <div class="valmsg arrow_left hide">
                             <small></small>
                         </div>
-                        <input type="text" id="shelter_name" name="reg_form[shelter_name]" data-status="no" class="" value="" placeholder="{'shelter_name'|get_lang}" required="required">
+                        <input type="text" id="shelter_name" name="reg_form[name]" data-status="no" class="validation_check" value="" placeholder="{'shelter_name'|get_lang}" required="required">
                     </div>
                 </div>
 
@@ -23,7 +51,7 @@
                         <div class="valmsg arrow_left hide">
                             <small></small>
                         </div>
-                        <input type="text" id="contact_number" name="contact_number" data-status="no" class="" placeholder="{'contact_number'|get_lang}" required="required">
+                        <input type="text" id="contact_number" name="contact_number"  class="validation_check" placeholder="{'contact_number'|get_lang}" required="required">
                     </div>
                 </div>
 

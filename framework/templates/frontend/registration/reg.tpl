@@ -62,24 +62,27 @@ $(document).ready(function(){
 
     $(document).on('focusout' , '#email1' , function(){
         var ito = $(this);
-        $.ajax({
-            url:'{/literal}{"login.php"|seo_url}{literal}/?act=check_email',
-            type: "post",
-            data: { email : ito.val() } ,
-            success: function(response){
-                if(response != '1'){
-                    ito.prev().show().find('small').html(" Email is Available").css({ color : "#00ff00"});
-                    ito.removeClass('error_form');
-                    ito.addClass('success_form');
-                    ito.attr('data-status' , 'ok');
-                }else{  
-                    ito.prev().show().find('small').html(" Email is not Available").css({ color : "#ff0000"});
-                    ito.removeClass('success_form');
-                    ito.addClass('error_form');
-                    ito.attr('data-status' , 'no');
+        
+        if($(this).val() != ""){
+            $.ajax({
+                url:'{/literal}{"login.php"|seo_url}{literal}/?act=check_email',
+                type: "post",
+                data: { email : ito.val() } ,
+                success: function(response){
+                    if(response != '1'){
+                        ito.prev().show().find('small').html(" Email is Available").css({ color : "#00ff00"});
+                        ito.removeClass('error_form');
+                        ito.addClass('success_form');
+                        ito.attr('data-status' , 'ok');
+                    }else{  
+                        ito.prev().show().find('small').html(" Email is not Available").css({ color : "#ff0000"});
+                        ito.removeClass('success_form');
+                        ito.addClass('error_form');
+                        ito.attr('data-status' , 'no');
+                    }
                 }
-            }
-        });
+            });
+        }
 
     });
 
