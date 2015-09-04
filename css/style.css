@@ -719,6 +719,33 @@ a.browse {
 }
 /*=END VET REG=*/
 
+/*===Thanks!===*/
+.thanks-container {
+  margin: 0 auto;
+  display: table;
+  padding: 80px 0;
+  height: 100%;
+}
+
+.thanks-cont {
+  padding: 30px;
+}
+
+.thanks-top h4 {
+  margin-top: 0;
+}
+
+input.invite {
+  padding: 10px;
+  border: 1px solid #C7C7C7;
+  border-radius: 6px;
+  width: 55%;
+}
+
+.button-primary.btn-invite {
+  width: 16%;
+}
+
 /*==Modal popup==*/
 .modal-popup {
   position: fixed;
