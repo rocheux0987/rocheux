@@ -1,17 +1,17 @@
 <div class="left-nav left">
     <div class="leftbox whitebox">
         <ul>
-        <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}notification.png" class="icon"><span>Newsfeed</span></a></li>
+            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}notification.png" class="icon"><span>Newsfeed</span></a></li>
         </ul>
     </div>
     
     <div class="leftbox whitebox">
         <label class="text-muted">PET NEEDS</label>
         <ul>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}cart.png" class="icon"><span>Nearest Petshop</span></a></li>
+            <li><a href="{"petshop.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}cart.png" class="icon"><span>Nearest Petshop</span></a></li>
             <li><a href="{"vets.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}vet.png" class="icon"><span>Nearest Vet</span></a></li>
             <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}petinsurance.png" class="icon"><span>Pet Insurance</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}foundation.jpg" class="icon"><span>Animal Shelters</span></a></li>
+            <li><a href="{"shelter.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}foundation.jpg" class="icon"><span>Animal Shelters</span></a></li>
             <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}adopt.png" class="icon"><span>Adopt a Pet</span></a></li>
         </ul>
     </div>

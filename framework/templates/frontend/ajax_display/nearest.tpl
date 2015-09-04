@@ -5,7 +5,9 @@
 	<div class="newsfeed-content">
 		<div class="row nearest-content">
 			<div class="map-image left">
-				<a href="#"><img src="{$smarty.const._IMAGES_URL_}/new/vet1.jpg"></a>
+				<a href="#">
+					<img src="{$row.image.image_path}">
+				</a>
 			</div>
 
 			<div class="nearest-infos right">
@@ -34,7 +36,7 @@
 		<!-- COMMENT SECTION -->
 		<div class="row newsfeed-bottom left">
 			<div class="left">
-				<a href="#"><img src="{$smarty.const._IMAGES_URL_}like.png"><span class="like">26</span></a>
+				<a href="#"><img src="{$smarty.const._IMAGES_URL_}like.png"><span class="like"></span></a>
 			</div>
 			<div class="left">
 				<a href="javascript:void(0);" id="comment-down"><img src="{$smarty.const._IMAGES_URL_}comment.png"></a>

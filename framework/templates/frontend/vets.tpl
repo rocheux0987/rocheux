@@ -1,31 +1,191 @@
-{$section_title}
+{literal}
+<style type="text/css">
+.map-canvas{
+	height: 150px;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	var map;
+	var infowindow;
+	$(document).on('click' , '#form_submit' , function(){
+		if($('#state_form').val() != ''){
+			$( "#search_form" ).trigger("submit");
 
-{*
-<h1>HOME SEO_URL sin parametros</h1>
-home.php = {"home.php"|seo_url}<br />
+			$.ajax({
+				url: $("#search_form").attr('action'),
+				type: "GET",
+				data: $("#search_form").serialize(),
+				success: function(response){
+					$('#load_here').html(response);
+				}
+			});
+		}
+	});
 
-<h1>HOME SEO_URL_QUERYSTRING sin parametros</h1>
-home.php = {"home.php"|seo_querystring_url}<br />
 
-<h1>HOME SEO_URL con 2 parametros V1</h1>
-home.php?id=1&otroparametro=2 = {"home.php?id=1&otroparametro=2"|seo_url}<br />
+	if(navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function (position) {
+			var currentloc = {lat: position.coords.latitude, lng: position.coords.longitude };	
 
-<h1>HOME SEO_URL con 2 parametros V2</h1>
-home.php?id=1&otroparametro=2& = {"home.php?id=1&otroparametro=2&"|seo_url}<br />
+			map = new google.maps.Map(document.getElementById('current_location_area'), 
+			{
+				center: currentloc,
+				zoom: 15,
+			});
+			infowindow = new google.maps.InfoWindow();
 
-<h1>HOME SEO_URL_QUERYSTRING con 2 parametros V1</h1>
-home.php?id=1&otroparametro=2 = {"home.php?id=1&otroparametro=2"|seo_querystring_url}<br />
+			var marker = new google.maps.Marker({
+				position: currentloc,
+				animation: google.maps.Animation.DROP,
+				title: 'Your Location',
+				map: map
+			});
 
-<h1>HOME SEO_URL_QUERYSTRING con 2 parametros V2</h1>
-home.php?id=1&otroparametro=2& = {"home.php?id=1&otroparametro=2&"|seo_querystring_url}<br />
+			google.maps.event.addListener(map, "click", function (event) {
 
-<h1>HOME SEO_URL con 1 parametro</h1>
-home.php?id=1 = {"home.php?id=1"|seo_url}<br />
+				var marker = new google.maps.Marker({
+					position: event.latLng,
+					map: map
+				});  
+				map.panTo(event.latLng);
 
-<h1>HOME SEO_URL_QUERYSTRING con 1 parametro</h1>
-home.php?id=1 = {"home.php?id=1"|seo_querystring_url}<br />
 
-<h1>GET</h1>
-<pre>{$smarty.get|var_dump}</pre><br />
+				var latitude = event.latLng.lat();
+				var longitude = event.latLng.lng();
+				$.ajax({
+					url: '{/literal}{"vets.php"|seo_url}{literal}/?act=nearest',
+					type: "GET",
+					data: {lat : latitude , lon : longitude},
+					success: function(response){
+						$('#load_here').html(response);
+					}
+				});
 
-*}
+
+
+			});
+
+			$.ajax({
+				url: '{/literal}{"vets.php"|seo_url}{literal}/?act=nearest',
+				type: "GET",
+				data: {lat : position.coords.latitude , lon : position.coords.longitude},
+				success: function(response){
+					$('#load_here').html(response);
+				}
+			});
+		});
+}
+
+});
+
+function initMap(latitude, longitude , div) {
+	var currentloc = {lat: latitude, lng: longitude};	
+
+	map = new google.maps.Map(document.getElementById(div), 
+	{
+		center: currentloc,
+		zoom: 15
+	});
+
+	infowindow = new google.maps.InfoWindow();
+
+	createUserLocMarker(currentloc); 
+
+}
+
+function createUserLocMarker(currentloc)
+{
+	var marker = new google.maps.Marker({
+		position: currentloc,
+		animation: google.maps.Animation.DROP,
+		title: 'Your Location',
+		map: map
+	});
+
+}
+</script>
+{/literal}
+
+<div class="mid">
+	<div class="nearest-header whitebox">
+		<div class="text-center">
+			<img src="{$smarty.const._IMAGES_URL_}vet-large.jpg">
+			<h3>Nearest Veterinarian <br><small class="text-muted">Find your nearest veterinarian</small></h3>
+			<div class="search-input-nearest">
+				<form method="get" action="{'vets.php'|seo_url}/" id="search_form">
+					<input type="hidden" name="act" value="search">
+					<input type="text" class="form-control input-lg" name="value" id="state_form" placeholder="Search for...">
+					<a href="javascript:void(0);" id="form_submit"><img src="{$smarty.const._IMAGES_URL_}search.png"></a>
+				</form>
+			</div>
+			<br clear="all">
+		</div>
+	</div>
+	<div class="newsfeed whitebox" >
+		<!-- NEWSFEED CONTENT -->
+		<div class="newsfeed-content">
+			<div id="current_location_area" style="height:50%;padding:2px;"></div>
+			<br clear="all" />
+		</div>
+		
+	</div>
+	{if $is_search eq true}
+	{foreach name="results" from=$vet item=row}
+	<!-- NEWSFEED AREA-->
+	<div class="newsfeed whitebox">
+		<!-- NEWSFEED CONTENT -->
+		<div class="newsfeed-content">
+			<div class="row nearest-content">
+				<div class="map-image left">
+					<a href="#">
+						<img src="{$row.image.image_path}">
+					</a>
+				</div>
+
+				<div class="nearest-infos right">
+					<div class="map-canvas" id="map_{$row.vet_id}"></div>
+					{literal}
+					<script type="text/javascript">
+					initMap({/literal}{$row.lat}{literal}, {/literal}{$row.lon}{literal} , 'map_{/literal}{$row.vet_id}{literal}');
+					</script>
+					{/literal}
+					<div>
+						<div class="naddress left" style="width:50%;padding-top:10px;">
+							<p>{$row.address}</p>	
+						</div>
+						<div class="nother-infos right" style="width:40%;">
+							<a href="tel:{$row.contact_number}"><i class="fa fa-phone"></i> <span>{$row.contact_number}</span></a>
+							<br>
+							<a href="mailto:{$row.email}"><i class="fa fa-envelope"></i> <span>{$row.email}</span></a>
+						</div>
+						<br clear="all"/>
+					</div>
+				</div>
+				<br clear="all"/>
+			</div>
+			<!-- END NEWSFEED CONTENT -->
+
+			<!-- COMMENT SECTION -->
+			<div class="row newsfeed-bottom left">
+				<div class="left">
+					<a href="#"><img src="{$smarty.const._IMAGES_URL_}like.png"><span class="like">26</span></a>
+				</div>
+				<div class="left">
+					<a href="javascript:void(0);" id="comment-down"><img src="{$smarty.const._IMAGES_URL_}comment.png"></a>
+				</div>
+				<br clear="all" />
+			</div>
+			<!-- END COMMENT SECTION -->
+			<br clear="all" />
+		</div>
+	</div>
+	{foreachelse}
+	<p class="text-center">No Results...</p>
+	{/foreach}
+	{else}
+	<div id="load_here"></div>
+	{/if}
+	
+</div>
+

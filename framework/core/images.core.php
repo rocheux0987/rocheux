@@ -103,7 +103,7 @@ class images{
 	{
 		global $db, $filesystem;
 		
-		if(!empty($image_data['error']) || empty($image_data)){
+		if((!empty($image_data['error']) && $image_data['error'] <> 0) || empty($image_data)){
 			return false;
 		}
 		

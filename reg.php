@@ -189,12 +189,6 @@ if($_POST){
 				echo '<option value="'.$row['code'].'">'.$row['state'].'</option>';
 			}
 			echo '</select>';
-		}else{
-			echo '
-				<div class="valmsg arrow_left hide">
-                    <small></small>
-                </div>';
-			echo '<input type="text" class="validation_check" name="reg_form[state]" placeholder="State">';
 		}
 		die();
 	}

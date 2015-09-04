@@ -58,6 +58,7 @@
 				'user_id' => $id,
 				'name' => $pet["name"],
 				'howtocall' => $pet["howtocall"],
+				'gender' => $pet["gender"],
 				'pet_type_id' => $pet["pet_type_id"],
 				'breed_id' => $pet["breed_id"],
 				'food_id' => $pet["food_id"],

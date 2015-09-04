@@ -15,8 +15,10 @@ $smarty->assign("section_template", 'home.tpl');
 $smarty->assign("pets_of_the_week", $pets_of_the_week);
 $smarty->assign("slider_image", $slider);
 
-
+echo '<pre>';
+print_r($pets_of_the_week);
+echo '</pre>';
 #Smarty display.
-$smarty->display(_TPL_FRONTEND_DIR_."index.tpl");
+#$smarty->display(_TPL_FRONTEND_DIR_."index.tpl");
 
 ?>

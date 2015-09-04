@@ -9,7 +9,9 @@ $(document).ready(function(){
 		var url     = '{/literal}{"reg.php"|seo_url}{literal}/?act='+country;
 		
 		$.post(url , function(data){
-			$('#state_div').html(data);
+			if(data != ''){
+                $('#state_div').html(data);
+            }
 		});
 	});
 
@@ -145,7 +147,7 @@ $(document).ready(function(){
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="email" id="email1" name="reg_form[email]" data-status="no" class="validation_check email_check" value="{$reg_form.email}" placeholder="{$lang.email_address}" required="required">
+                            <input type="email" id="email1" name="reg_form[email]" data-status="no" class="validation_check email_check" value="{$reg_form.email}" placeholder="{'email_address'|get_lang}" required="required">
                         </div>
                     </div>
 
@@ -155,7 +157,7 @@ $(document).ready(function(){
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="email" id="email2" name="email2" data-status="no" class="validation_check email_check" placeholder="{$lang.confirm_email_address}" required="required">
+                            <input type="email" id="email2" name="email2" data-status="no" class="validation_check email_check" placeholder="{'password'|get_lang}" required="required">
                         </div>
                     </div>
 
@@ -165,7 +167,7 @@ $(document).ready(function(){
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="password" name="reg_form[password]" class="validation_check email_check" data-status="no" id="pass1" placeholder="{$lang.password}" required >
+                            <input type="password" name="reg_form[password]" class="validation_check email_check" data-status="no" id="pass1" placeholder="{'confirm_password'|get_lang}" required >
                         </div>
                     </div>
  
@@ -175,7 +177,7 @@ $(document).ready(function(){
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="text" name="reg_form[first_name]" class="validation_check" value="{$reg_form.first_name}" placeholder="{$lang.first_name}" required="required">
+                            <input type="text" name="reg_form[first_name]" class="validation_check" value="{$reg_form.first_name}" placeholder="{'first_name'|get_lang}" required="required">
                         </div>
                     </div>
 
@@ -185,7 +187,7 @@ $(document).ready(function(){
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="text" name="reg_form[last_name]" class="validation_check" value="{$reg_form.last_name}" placeholder="{$lang.last_name}" required="required">
+                            <input type="text" name="reg_form[last_name]" class="validation_check" value="{$reg_form.last_name}" placeholder="{'last_name'|get_lang}" required="required">
                         </div>
                     </div>
 
@@ -195,7 +197,7 @@ $(document).ready(function(){
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="text" name="reg_form[address]" class="validation_check" value="{$reg_form.address}" placeholder="{$lang.address}" id="address_map" readonly>
+                            <input type="text" name="reg_form[address]" class="validation_check" value="{$reg_form.address}" placeholder="{'address'|get_lang}" id="address_map" readonly>
                         </div>
                     </div>
 
@@ -235,7 +237,18 @@ $(document).ready(function(){
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="text" name="reg_form[phone]" class="validation_check" value="{$reg_form.phone}" placeholder="{$lang.mobile_phone}">
+                            <input type="text" name="reg_form[phone]" class="validation_check" value="{$reg_form.phone}" placeholder="{'mobile_phone'|get_lang}">
+                        </div>
+                    </div>
+
+                     <!-- city -->
+                    <div class="control-group">
+                        <label></label>
+                        <div class="controls">
+                            <div class="valmsg arrow_left hide">
+                                <small></small>
+                            </div>
+                            <input type="text" class="validation_check" name="reg_form[city]" value="{$reg_form.city}" placeholder="{'city'|get_lang}">
                         </div>
                     </div>
 
@@ -252,7 +265,7 @@ $(document).ready(function(){
                                 <small></small>
                             </div>
                             <select id="country" class="validation_check" name="reg_form[country]">
-                                <option value="">-- Select {$lang.country} --</option>
+                                <option value="">-- Select {'country'|get_lang} --</option>
                                 {foreach name="results" from=$country item=row }
                                     <option value="{$row.code}"  {if $reg_form.country eq $row.code} selected="selected"{/if} >{$row.country}</option>
                                 {/foreach}
@@ -262,20 +275,13 @@ $(document).ready(function(){
 
                     <!-- state -->
                     <div class="control-group">
-                        <div class="controls" id="state_div"></div>
-                    </div>
-
-                    <!-- city -->
-                    <div class="control-group">
-                        <label></label>
-                        <div class="controls">
+                        <div class="controls" id="state_div">
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="text" class="validation_check" name="reg_form[city]" value="{$reg_form.city}" placeholder="{$lang.city}">
+                            <input type="text" class="validation_check" name="reg_form[state]" placeholder="{'state'|get_lang}">
                         </div>
                     </div>
-
                 </div>
                 <br clear="all"/>
 
@@ -288,7 +294,7 @@ $(document).ready(function(){
                     &nbsp; &nbsp;
                     <div class="control-group right">
                         <div class="controls">
-                             <a href="#" class="btn-next button-primary">{$lang.next}</a>
+                             <a href="#" class="btn-next button-primary">{'next'|get_lang}</a>
                         </div>
                     </div>
                 </div>
@@ -335,38 +341,15 @@ $(document).ready(function(){
                     <input type="text" class="form-control" style="width: 110px" id="us3-lon" disabled />
                 </div>
             </div>
+            <div>
+            <input type="hidden" class="form-control" style="width: 110px" id="us3-radius"  />
+            <input type="hidden" class="form-control" style="width: 110px" id="us3-country"  />
+            <input type="hidden" class="form-control" style="width: 110px" id="us3-stateOrProvince"  />
+            <input type="hidden" class="form-control" style="width: 110px" id="us3-district"  />
+            <input type="hidden" class="form-control" style="width: 110px" id="us3-city"  />
+            <input type="hidden" class="form-control" style="width: 110px" id="us3-address2"  />
+            </div>
             <div class="clearfix"></div>
-            {literal}
-            <script>
-            if(navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    showPicker(position.coords.latitude, position.coords.longitude);
-                });
-            }
-
-            function showPicker(latitude, longitude)
-            {
-                $('#us3').locationpicker({
-                    location: { latitude: latitude, longitude: longitude  },
-                    radius: 200,
-                    inputBinding: {
-                        latitudeInput: $('#us3-lat'),
-                        longitudeInput: $('#us3-lon'),
-                        radiusInput: $('#us3-radius'),
-                        locationNameInput: $('#us3-address')
-                    },
-                    enableAutocomplete: true,
-                                // onchanged: function (currentLocation, radius, isMarkerDropped) {
-                                //     // Uncomment line below to show alert on each Location Changed event
-                                //     alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
-                                // }
-                            });
-            }
-            $('#popup-addressmap').on('shown.bs.modal', function() {
-                $('#us3').locationpicker('autosize');
-            });
-            </script>
-            {/literal}
             <div class="popup-fields">
                 <div class="button-primary" id="save">
                     Save Location
@@ -375,3 +358,51 @@ $(document).ready(function(){
         </fieldset>
     </div>
 </div>
+
+{literal}
+<script type="text/javascript" language="javascript">
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            showPicker(position.coords.latitude, position.coords.longitude);
+        });
+    
+        function updateControls(addressComponents) {
+            $('#us3-country').val(addressComponents.country);
+            $('#us3-stateOrProvince').val(addressComponents.stateOrProvince);
+            $('#us3-district').val(addressComponents.district);
+            $('#us3-city').val(addressComponents.city);
+            $('#us3-address2').val( [addressComponents.streetName, addressComponents.streetNumber].join(' ').trim());
+        }
+        
+        function showPicker(latitude, longitude){
+            $('#us3').locationpicker({
+                location: { latitude: latitude, longitude: longitude  },
+                radius: 200,
+                inputBinding: {
+                    latitudeInput: $('#us3-lat'),
+                    longitudeInput: $('#us3-lon'),
+                    radiusInput: $('#us3-radius'),
+                    locationNameInput: $('#us3-address')
+                },
+                onchanged: function (currentLocation, radius, isMarkerDropped) {
+                    var addressComponents = $(this).locationpicker('map').location.addressComponents;
+                    updateControls(addressComponents);
+                },
+                oninitialized: function(component) {
+                    var addressComponents = $(component).locationpicker('map').location.addressComponents;
+                    updateControls(addressComponents);
+                },
+                enableAutocomplete: true,
+                            // onchanged: function (currentLocation, radius, isMarkerDropped) {
+                            //     // Uncomment line below to show alert on each Location Changed event
+                            //     alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+                            // }
+                        });
+        }
+        
+        $('#popup-addressmap').on('shown.bs.modal', function() {
+            $('#us3').locationpicker('autosize');
+        });
+    }
+</script>
+{/literal}
