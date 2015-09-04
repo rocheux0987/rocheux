@@ -131,7 +131,7 @@ if($_POST){
 				$smarty->assign("user_type" , 'M');
 				break;
 			case 'P':
-				#$smarty->assign("section_template", 'registration/petreg.tpl');
+				$smarty->assign("section_template", 'registration/foundationreg.tpl');
 				break;
 			case 'V':
 				$smarty->assign("section_title", "Register - Veterinarian Details");
