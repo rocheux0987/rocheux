@@ -7,7 +7,7 @@
                 $(this).next().attr('data-attr' , 'hide');
                 $('.ss').addClass('mshow');
                 $('.ss').removeClass('mhide');
-                $(this).attr('src', '{$smarty.const._IMAGES_URL_}menubtn_clicked.png');
+                $(this).attr('src', 'images/menubtn_clicked.png');
 
             }else{
                 $(this).next().attr('data-attr' , 'show');
