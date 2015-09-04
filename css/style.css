@@ -746,6 +746,10 @@ input.invite {
   width: 16%;
 }
 
+.button-primary.btn-skip {
+  width: 12%;
+}
+
 /*==Modal popup==*/
 .modal-popup {
   position: fixed;
@@ -1567,6 +1571,8 @@ button.upload {
     width: 95%;
   }
 
+
+
   .newsfeed-bottom span {
     position: absolute;
     z-index: 11;
@@ -1669,6 +1675,21 @@ button.upload {
   .general.vet {
     padding: 30px 60px 70px;
   }
+
+  input.invite {
+    padding: 10px;
+    border: 1px solid #C7C7C7;
+    border-radius: 6px;
+    width: 100%;
+  }
+
+  .button-primary.btn-invite {
+    width: 100%;
+  }
+
+  .button-primary.btn-skip {
+    width: 95%;
+  }
 }
 
 @media only screen and (max-width: 497px) {
@@ -1706,7 +1727,7 @@ button.upload {
     margin-left: 2px;
   }
 
-  .button-primary {
+  .button-primary, .button-primary.btn-skip{
     border: 0 none;
     border-radius: 6px;
     color: #FFFFFF;
@@ -1913,7 +1934,7 @@ button.upload {
     font-size: 11px;
   }
 
-  .button-primary {
+  .button-primary, .button-primary.btn-skip {
     border: 0 none;
     border-radius: 6px;
     color: #FFFFFF;
@@ -1969,7 +1990,7 @@ button.upload {
     margin-left: 110px;
   }
 
-  .button-primary {
+  .button-primary, .button-primary.btn-skip {
     border: 0 none;
     border-radius: 6px;
     color: #FFFFFF;
