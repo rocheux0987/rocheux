@@ -22,7 +22,7 @@ $(document).ready(function(){
 
         $('.validation_check').each(function(){
             if($(this).val() == ''){
-                $(this).prev().show().find('small').html('Required').css({ color : "#ff0000"});
+                $(this).addClass('error_form').prev().show().find('small').html('Required').css({ color : "#ff0000"});
                 error = true;
             }
         });
@@ -115,11 +115,11 @@ $(document).ready(function(){
                 </div>
                 
                 <div class="form-ups">
-                    <!-- {$lang.image} -->
-                    <div class="control-group left">
-                        <label class="imgup">Image:</label>
+                    <!-- {$lang.store_image} -->
+                    <div class="control-group right">
+                        <label class="imgup">Store Image:</label>
                         <div class="controls">
-                            <input type="file" name="mercimage" id="mercimage" class="hidden">
+                            <input type="file" name="storeimage" id="storeimage" class="hidden" multiple>
                             <a href="javascript:void(0)" class="browse">Browse</a>
                         </div>
                     </div>
@@ -128,7 +128,7 @@ $(document).ready(function(){
                     <div class="control-group right">
                         <label class="imgup">Store Image:</label>
                         <div class="controls">
-                            <input type="file" name="storeimage" id="storeimage" class="hidden" multiple>
+                            <input type="file" name="storeimage" id="storeimage" class="hidden" accept="image/*" multiple >
                             <a href="javascript:void(0)" class="browse">Browse</a>
                         </div>
                     </div>
@@ -139,7 +139,7 @@ $(document).ready(function(){
                 <div class="signup-submit right">
                     <div class="control-group left">
                         <div class="controls">
-                            <a href="#" class="btn-next button-primary">{$lang.previous}</a> 
+                            <a href="#" class="btn-next button-primary btn-prev">{$lang.previous}</a> 
                         </div>
                     </div>
                     <div class="control-group right">
@@ -148,6 +148,7 @@ $(document).ready(function(){
                         </div>
                     </div>
                 </div>
+                <br clear="all"/>
             </form>
         </div>
     </div>

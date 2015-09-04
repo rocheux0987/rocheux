@@ -17,6 +17,7 @@ $(document).ready(function(){
 
     $(document).on('focus' , '#address_map' , function(){
         popup_open('#popup-addressmap');
+        $('#us3').locationpicker('autosize');
     });
 
     $(document).on('click' , '#save' , function(){
@@ -82,14 +83,14 @@ $(document).ready(function(){
 
     });
 
-    $(document).on('focusout' , '#email2' , function(){
+    $(document).on('focusout' , '#pass2' , function(){
 
-        if($(this).val() == $('#email1').val()){
+        if($(this).val() == $('#pass1').val()){
             $(this).prev().hide();
             $(this).removeClass('error_form');
             $(this).attr('data-status' , 'ok');
         }else{
-            $(this).prev().show().find('small').html(" Email is not match").css({ color : "#ff0000"});
+            $(this).prev().show().find('small').html(" Password is not match").css({ color : "#ff0000"});
             $(this).removeClass('success_form');
             $(this).addClass('error_form');
             $(this).attr('data-status' , 'no');
@@ -151,23 +152,22 @@ $(document).ready(function(){
                         </div>
                     </div>
 
-                  <!-- confirm email address -->
-                    <div class="control-group">
-                        <div class="controls">
-                            <div class="valmsg arrow_left hide">
-                                <small></small>
-                            </div>
-                            <input type="email" id="email2" name="email2" data-status="no" class="validation_check email_check" placeholder="{'password'|get_lang}" required="required">
-                        </div>
-                    </div>
-
                       <!-- password -->
                     <div class="control-group">
                         <div class="controls">
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="password" name="reg_form[password]" class="validation_check email_check" data-status="no" id="pass1" placeholder="{'confirm_password'|get_lang}" required >
+                            <input type="password" name="reg_form[password]" class="validation_check email_check" data-status="no" id="pass1" placeholder="{'password'|get_lang}" required >
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <div class="valmsg arrow_left hide">
+                                <small></small>
+                            </div>
+                            <input type="password" class="validation_check email_check" data-status="no" id="pass2" placeholder="{'confirm_password'|get_lang}" required >
                         </div>
                     </div>
  
@@ -400,9 +400,6 @@ $(document).ready(function(){
                         });
         }
         
-        $('#popup-addressmap').on('shown.bs.modal', function() {
-            $('#us3').locationpicker('autosize');
-        });
     }
 </script>
 {/literal}

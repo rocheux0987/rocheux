@@ -101,6 +101,7 @@
                         </div>
                     </div>
                 </div>
+                <br clear="all"/>
             </form>
         </div>
     </div>

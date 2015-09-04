@@ -9,7 +9,7 @@ switch ($_GET['act']) {
 		$info = $shelter_controller->get($_GET['value']);
 
 		foreach ($info as $key => $row){
-			$info[$key]['image'] = $images->fn_get_image($row['shelter_id'], 'shelter', $row['image'])  ;
+			$info[$key]['image'] = $images->fn_get_image($row['foundation_id'], 'foundation', $row['image'])  ;
 		}
 
 		$smarty->assign("is_search", true);
@@ -19,7 +19,7 @@ switch ($_GET['act']) {
 		$info = $shelter_controller->get(null , $_GET['lat'] , $_GET['lon']);
 
 		foreach ($info as $key => $row){
-			$info[$key]['image'] = $images->fn_get_image($row['shelter_id'], 'shelter', $row['image'])  ;
+			$info[$key]['image'] = $images->fn_get_image($row['foundation_id'], 'foundation', $row['image'])  ;
 		}
 
 		$smarty->assign("data", $info);
