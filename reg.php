@@ -170,12 +170,14 @@ if($_POST){
 			$_SESSION['pet_data'] ['pet_id'] = $pet[0]['pet_id'];
 			$_SESSION['pet_data'] ['pet_name'] = $pet[0]['name'];
 		}
+
 		
+		$smarty->assign("name" , $sql[0]['first_name'].' '.$sql[0]['last_name']);
+		$smarty->assign("section_template", 'thanks.tpl');
 
 		//redirect to home
 		#echo '<script>window.location.reload();</script>';
 
-		
 	}
 
 }else{
