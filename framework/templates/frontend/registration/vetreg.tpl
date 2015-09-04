@@ -150,24 +150,27 @@ $(document).ready(function(){
                     </div>
                 </div>
 
-                 <!-- {$lang.store_image} -->
-                <div class="control-group left">
-                    <label class="imgup">{$lang.store_image}</label>
-                    <div class="controls">
-                        <input type="file" name="logo" class="hidden" id="storeimage">
-                        <a href="javascript:void(0)" class="browse">Browse</a>
+                <div class="form-ups">
+                     <!-- {$lang.store_image} -->
+                    <div class="control-group left">
+                        <label class="imgup">{$lang.store_image}</label>
+                        <div class="controls">
+                            <input type="file" name="logo" class="hidden" id="storeimage">
+                            <a href="javascript:void(0)" class="browse">Browse</a>
+                        </div>
                     </div>
-                </div>
 
-                <!-- {$lang.image} -->
-                <div class="control-group right">
-                    <label class="imgup">{$lang.image}</label>
-                    <div class="controls">
-                        <input type="file" name="vetimage[]" class="hidden" id="vetimage" multiple>
-                        <a href="javascript:void(0)" class="browse">Browse</a>
+                    <!-- {$lang.image} -->
+                    <div class="control-group right">
+                        <label class="imgup">{$lang.image}</label>
+                        <div class="controls">
+                            <input type="file" name="vetimage[]" class="hidden" id="vetimage" multiple>
+                            <a href="javascript:void(0)" class="browse">Browse</a>
+                        </div>
                     </div>
+                    <br clear="all"/>
                 </div>
-                <br clear="all"/>
+            
                 <!-- action submit -->
                 <div class="signup-submit right">
                     <div class="control-group left">

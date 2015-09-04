@@ -68,23 +68,25 @@
                 </div>
                 
                 <!-- {$lang.image} -->
-                <div class="control-group left">
-                    <label class="imgup">Logo:</label>
-                    <div class="controls">
-                        <input type="file" name="mercimage" id="mercimage" class="hidden">
-                        <a href="javascript:void(0)" class="browse">Browse</a>
+                <div class="form-ups">
+                    <div class="control-group left">
+                        <label class="imgup">Logo:</label>
+                        <div class="controls">
+                            <input type="file" name="mercimage" id="mercimage" class="hidden">
+                            <a href="javascript:void(0)" class="browse">Browse</a>
+                        </div>
                     </div>
-                </div>
 
-                <!-- {$lang.store_image} -->
-                <div class="control-group right">
-                    <label class="imgup">Featured Pets (5):</label>
-                    <div class="controls">
-                        <input type="file" name="storeimage" id="storeimage" class="hidden" multiple>
-                        <a href="javascript:void(0)" class="browse">Browse</a>
+                    <!-- {$lang.store_image} -->
+                    <div class="control-group right">
+                        <label class="imgup">Featured Pets (5):</label>
+                        <div class="controls">
+                            <input type="file" name="storeimage" id="storeimage" class="hidden" multiple>
+                            <a href="javascript:void(0)" class="browse">Browse</a>
+                        </div>
                     </div>
+                    <br clear="all"/>
                 </div>
-                <br clear="all"/>
 
                 <!-- action submit -->
                 <div class="signup-submit right">
