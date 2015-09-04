@@ -18,9 +18,9 @@ switch ($_GET['act']) {
 		$info = $petshop_controller->get(null , $_GET['lat'] , $_GET['lon']);
 
 		foreach ($info as $key => $row){
-			$info[$key]['image'] = $images->fn_get_image($row['merchant_id'], 'merchant', $row['image'])  ;
+			$info[$key]['image'] = $images->fn_get_image($row['merchant_id'], 'merchants', $row['image'])  ;
 		}
-		
+	
 		$smarty->assign("data", $info);
 		$smarty->display(_TPL_FRONTEND_DIR_."ajax_display/nearest.tpl");
 		die();

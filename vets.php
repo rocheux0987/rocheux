@@ -19,9 +19,6 @@ switch ($_GET['act']) {
 			$info[$key]['image'] = $images->fn_get_image($row['vet_id'], 'vet', $row['image']);
 		}
 
-		echo '<pre>';
-		print_r($info);
-		echo '</pre>';
 		
 		$smarty->assign("data", $info);
 		$smarty->display(_TPL_FRONTEND_DIR_."ajax_display/nearest.tpl");

@@ -15,6 +15,9 @@ class images{
 		}elseif ($type == 'vet'){
 			$table = '?:vets';
 			$key = 'vet_id';
+		}elseif($type == 'merchants'){
+			$table = '?:merchants';
+			$key = 'merchant_id';	
 		}else{
 			return false;
 		}
