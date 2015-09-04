@@ -152,7 +152,7 @@ $(document).ready(function(){
 
                 <div class="form-ups">
                     <!-- {$lang.image} -->
-                    <div class="control-group right">
+                    <div class="control-group left">
                         <label class="imgup">{$lang.image}</label>
                         <div class="controls">
                             <input type="file" name="vetimage[]" class="hidden" id="vetimage" multiple>

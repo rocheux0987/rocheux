@@ -116,7 +116,7 @@ $(document).ready(function(){
                 
                 <div class="form-ups">
                     <!-- {$lang.store_image} -->
-                    <div class="control-group right">
+                    <div class="control-group left">
                         <label class="imgup">Store Image:</label>
                         <div class="controls">
                             <input type="file" name="storeimage" id="storeimage" class="hidden" multiple>
