@@ -53,7 +53,10 @@
 				return false;
 			}
 
-			return $id;
+			return [
+				"user" => $this->get_user($id)[0],
+				"pet" => $this->get_pet($id)[0]
+			];
 			
 		}
 		function foundationregister($info , $file , $id){
@@ -297,6 +300,59 @@
 				ON ?:food_styles.food_style_id = ?:food_styles_lang.food_style_id 
 				WHERE ?:food_styles.pet_type_id = ?s AND ?:food_styles_lang.lang_code = ?s', 
 				$pet_type_id, _CLIENT_LANGUAGE_);
+		}
+
+		function get_specialize(){
+			global $db;
+
+			$db->db_get_array('
+				SELECT ?:opt_vet_specializations.specialization_id, value 
+				FROM ?:opt_vet_specializations 
+				INNER JOIN ?:opt_vet_specialization_lang ON ?:opt_vet_specializations.specialization_id = ?:opt_vet_specialization_lang.specialization_id 
+				WHERE ?:opt_vet_specialization_lang.lang_code = ?s', 
+				_CLIENT_LANGUAGE_);
+		}
+
+		function get_user($id){
+			global $db;
+
+			return $db->db_get_array('
+				SELECT country , status , email , first_name , last_name , type , user_id 
+				FROM '.$user_table.' 
+				WHERE user_id = ?s' , $id);
+		}
+
+		function get_pet($id){
+			global $db;
+
+			return  $db->db_get_array('
+				SELECT name , pet_id, image 
+				FROM '.$pet_table.'
+				WHERE user_id = ?i ORDER BY pet_id ASC LIMIT 1' , $id);
+		}
+
+		function get_country(){
+			global $db;
+
+			return $db->db_get_array('SELECT code , country from ?:countries_lang WHERE lang_code = ?s',_CLIENT_LANGUAGE_);
+		}
+
+
+		function go_login($data){
+
+			$_SESSION['user_data']['user_id'] = $data['user']['user_id'];
+			$_SESSION['user_data']['user_type'] = $data['user']['type'];
+			$_SESSION['user_data']['country'] = $data['user']['country'];
+			$_SESSION['user_data']['user_name'] = $data['user']['first_name'].' '.$data['user']['last_name'];
+
+			
+			if($data['user']['type'] == 'B'){
+				$_SESSION['user_data']['pet_data']['pet_id'] = $data['pet']['pet_id'];
+				$_SESSION['user_data']['pet_data']['pet_name'] = $data['pet']['name'];
+				$_SESSION['user_data']['pet_data']['pet_image'] = $images->fn_get_image($data['pet']['pet_id'], 'pet', $data['pet']['image']);
+			}
+
+			return true;
 		}
 	}
 ?>

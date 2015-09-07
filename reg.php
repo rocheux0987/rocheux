@@ -8,7 +8,7 @@ if(isset($_SESSION['user_data'])){
 #Controllers
 $controllers_loader->load("user");
 //move to controller (create cache)
-$country = $db->db_get_array('SELECT code , country from ?:countries_lang WHERE lang_code = ?s',_CLIENT_LANGUAGE_);
+$country = $user_controller->get_country();
 
 #Smarty assigns
 $smarty->assign("country", $country);
@@ -23,19 +23,19 @@ if(isset($_POST['act'])){
 
 	//breed
 	//move to controller
-	$breed = $user_controller->get_breed();
+	$breed = $user_controller->get_breed($pet_type_id);
 
 	//food
 	//move to controller
-	$food = $user_controller->get_food();
+	$food = $user_controller->get_food($pet_type_id);
 
 	//brand
 	//move to controller
-	$brand = $user_controller->get_brand();
+	$brand = $user_controller->get_brand($pet_type_id);
 
 	//style
 	//move to controller
-	$style = $user_controller->get_style();
+	$style = $user_controller->get_style($pet_type_id);
 
 	switch ($type) {
 		case 'pet':
@@ -147,9 +147,8 @@ if($_POST){
 			case 'V':
 				$smarty->assign("section_title", "Register - Veterinarian Details");
 				//move to controller
-				$spec = $db->db_get_array('SELECT ?:opt_vet_specializations.specialization_id, value FROM ?:opt_vet_specializations INNER JOIN ?:opt_vet_specialization_lang ON ?:opt_vet_specializations.specialization_id = ?:opt_vet_specialization_lang.specialization_id WHERE ?:opt_vet_specialization_lang.lang_code = ?s', _CLIENT_LANGUAGE_);
-				//$pet = $db->db_get_array('SELECT ?:pet_types.pet_type_id, value FROM ?:pet_types INNER JOIN ?:pet_types_lang ON ?:pet_types.pet_type_id = ?:pet_types_lang.pet_type_id WHERE ?:pet_types_lang.lang_code = ?s', _CLIENT_LANGUAGE_);
-				$smarty->assign("specialization", $specialization);
+				$spec = $user_controller->get_specialize();
+
 				$smarty->assign("spec", $spec);
 				$smarty->assign("pet", $pet);
 				$smarty->assign("user_type" , 'V');
@@ -161,33 +160,13 @@ if($_POST){
 		}
 	}else if($_GET['act'] == 'third step'){
 
-		$id = $user_controller->register($_POST , $_FILES , $_POST['reg_form']['user_type']);
-
+		$data = $user_controller->register($_POST , $_FILES , $_POST['reg_form']['user_type']);	
 		
-		//move to controller
-		$sql = $db->db_get_array('SELECT country , status , email , first_name , last_name , type , user_id FROM ?:users WHERE user_id = ?s' , $id);
-		
-		
-		//LOGIN AREA
-		$response["status"] = 1;
-
-		//move to controller
-		$_SESSION['user_data']['user_id'] = $sql[0]['user_id'];
-		$_SESSION['user_data']['user_type'] = $sql[0]['type'];
-		$_SESSION['user_data']['country'] = $sql[0]['country'];
-		$_SESSION['user_data']['user_name'] = $sql[0]['first_name'].' '.$sql[0]['last_name'];
-
-		//move to controller
-		if($sql[0]['type'] == 'B'){
-			$pet = $db->db_get_array('SELECT name , pet_id, image FROM ?:pets WHERE user_id = ?i ORDER BY pet_id ASC LIMIT 1' , $sql[0]['user_id']);
-			$_SESSION['user_data']['pet_data']['pet_id'] = $pet[0]['pet_id'];
-			$_SESSION['user_data']['pet_data']['pet_name'] = $pet[0]['name'];
-			$_SESSION['user_data']['pet_data']['pet_image'] = $images->fn_get_image($pet[0]['pet_id'], 'pet', $pet[0]['image']);
-		}
+		$user_controller->do_login($data);
 		
 
 		//redirect to home
-		$smarty->assign("name" , $sql[0]['first_name'].' '.$sql[0]['last_name']);
+		$smarty->assign("name" , $data['user']['first_name'].' '.$data['user']['last_name']);
 		$smarty->assign("section_template", 'thanks.tpl');
 		
 	}

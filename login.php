@@ -6,6 +6,7 @@ if ($_GET["act"] == "login"){
 	$sql = $db->db_get_row('SELECT country , status , email , first_name , last_name , type , user_id FROM ?:users WHERE email = ?s AND password = MD5(?s) AND status = ?s' , $_POST['user'] , $_POST['pass'] , 'A');
 
 	$response = array();
+	
 	if ($sql){
 
 		$response["status"] = 1;
