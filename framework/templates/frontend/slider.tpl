@@ -11,10 +11,10 @@
             infinite: true,
             speed: 500,
             slidesToShow: 1,
-            prevArrow: '<img class="slick-prev" src="{/literal}{$smarty.const._IMAGES_URL_}{literal}/prev_new.png">',
-            nextArrow: '<img class="slick-next" src="{/literal}{$smarty.const._IMAGES_URL_}{literal}/next_new.png">',
             centerMode: true,
             variableWidth: true,
+			prevArrow: '<img class="slick-prev" src="{/literal}{$smarty.const._IMAGES_URL_}{literal}prev_new.png">',
+            nextArrow: '<img class="slick-next" src="{/literal}{$smarty.const._IMAGES_URL_}{literal}next_new.png">',
             responsive: [
                 {
                   breakpoint: 768,
@@ -44,7 +44,7 @@
     <div class="rockyslider">
         {foreach name="results" from=$slider_image item=row}
             <div>
-                <img src="{$smarty.const._IMAGES_URL_}/sliders/{$row.image}" alt="{$row.image}" />
+                <img src="{$smarty.const._IMAGES_URL_}sliders/{$row.image}" alt="{$row.image}" />
             </div>
         {/foreach}
     </div>

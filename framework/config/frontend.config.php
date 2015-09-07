@@ -25,12 +25,11 @@ define(_GA_CODE_ , '
 
 #General includes & instances
 require_once(_CORE_DIR_."friendly.core.php");
+require_once(_CORE_DIR_."misc.core.php");
+$misc = new misc();
 
 #LANGS initialization
 $languages = new languages_core();
-
-#Notifications initialization
-$notifications = new notifications();
 
 require_once(_CORE_DIR_."sessions.core.php");
 

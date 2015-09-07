@@ -1,8 +1,10 @@
 <?php
-require("../framework/config/backend.config.php");
+require_once("../framework/config/backend.config.php");
+require_once(_CORE_DIR_.'/mailer.core.php');
 require_once(_CONTROLLERS_BACKEND_DIR_.'emails.controller.php');
 
 $builder = new EmailBuilder();
+$mailer = new Mailer();
 
 #Administrators validation
 $administrators_controller->session_check();
@@ -81,13 +83,38 @@ if($_POST['action'] == 'add_template') {
 if($_GET['act'] == 'testparse') {
 	$builder->setTemplate(1, _CLIENT_LANGUAGE_);
 	
-	$builder->replace('name', 'FirstName LastName');
+	$headers = [
+				'From' => 'raph@mc4pc.com',
+				'Reply-To' => 'admin@somtesite.com',
+				'Content-Type' => 'text/html',
+				'Mime-Version' => "1.0"
+				];
+	$receiver = 'raph@mc4pc.com';
+	$receivers = ['raph@mc4pc.com', 'rplansangan@gmail.com'];
 	
-	$builder->replace('email_address', 'firstname@someemail.com');
+	$bcc = ['bcc1@bcc.com', 'thisisacompletelyinvalidemail', 'bcc2@bcc.com', 'bcc3@bcc.com', 'bcc4@bcc.com', 'bcc5@bcc.com'];
 	
-	$builder->cprint($builder->getSubject());
+	$cc = ['cc1@cc.com', 'cc2@cc.com', 'thisisacompletelyinvalidemail', 'cc3@cc.com', 'cc4@cc.com', 'cc5@cc.com'];
 	
-	$builder->cprint($builder->getTemplate());
+	$mailer
+		->setBody($builder->getTemplate())
+		->setHeaders($headers)
+		->setSubject($builder->getSubject())
+		->setBatchRecipient($receivers)
+		->setRecipient($receiver)
+		->setBcc(['rplansangan@gmail.com'])
+// 		->setCc(['rplansangan@gmail.com'])
+		->setPriority(2)
+		->setTimezone('Etc/GMT+0')
+		->replace('name', 'FirstName LastName')
+		->replace('email_address', $receiver)
+		->attachFile('/home/ab60195/public_html/rocky/images/add_photos.png')
+// 		->attachFile('C:\Users\Rap\Downloads\theme-21.xml')
+		->send();
+	
+	$mailer->dumpAll();
+	
+	
 }
 
 #Breadcrumb

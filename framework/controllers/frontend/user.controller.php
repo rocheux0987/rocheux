@@ -46,11 +46,11 @@
 			}else if($type == 'M'){
 				$this->mercregister($user['merc_form'] , $file , $id);
 			}else if($type == 'V'){
-				$this->vetregister($user['vetreg_form'] , $file , $id);
+			    $this->vetregister($user['vetreg_form'] , $file , $id);
 			}else if($type == 'P'){
 				$this->foundationregister($user['shelter_form'] , $file , $id);
 			}else{
-				return;
+				return false;
 			}
 
 			return $id;
@@ -83,11 +83,11 @@
 				$fileArray = $filesystem->fn_arrange_array($file['storeimage']);
 
 				foreach($fileArray as $image){
-					$arr = [ 
+					$arr = array(
 						'foundation_id' => $id,
-						'image' => time().'_'.$image['name'],
+						'image' => '',
 						'date' => time()
-					];
+					);
 
 					$sql = $db->db_query("INSERT INTO ".$this->foundation_image." ?e" , $arr);
 
@@ -123,7 +123,7 @@
 			$check = $db->db_query("INSERT INTO ".$this->pet_table." ?e ",$pet_arr);
 
 			if($check){
-				$upload_result = $filesystem->fn_upload($file);
+				$upload_result = $filesystem->fn_upload($file['petimage']);
 				$images->fn_update_image($upload_result, $check, 'pet');
 				return true;
 			}
@@ -171,16 +171,17 @@
 				$fileArray = $filesystem->fn_arrange_array($file['vetimage']);
 
 				foreach($fileArray as $image){
-					$arr = [ 
+					$image['name'] = time().'_'.$image['name'];
+					$arr = array(
 						'vet_id' => $new_vet_id,
-						'image' => time().'_'.$image['name'],
+						'image' => $image['name'],
 						'date' => time()
-					];
+					);
 
-					$sql = $db->db_query("INSERT INTO ".$this->vet_images." ?e" , $arr);
+					$db->db_query("INSERT INTO ".$this->vet_images." ?e" , $arr);
 
 					$upload_result = $filesystem->fn_upload($image);
-					$images->fn_update_image($upload_result, $new_vet_id, 'vet_images');
+					$images->fn_update_image($upload_result, $new_vet_id , 'vet_images');
 				}
 				
 				/* END MULTIPLE IMAGE UPLOAD */
@@ -210,9 +211,8 @@
 			$new_mer_id = $db->db_query("INSERT INTO ".$this->mer_table." ?e ",$merc_arr);
 
 			if($new_mer_id){
-				// vet upload image
-				$file['mercimage']['name'] = time().'_'.$file['mercimage']['name'];
-				$upload_result = $filesystem->fn_upload($file);
+				// Merchant upload image
+				$upload_result = $filesystem->fn_upload($file['mercimage']);
 				$images->fn_update_image($upload_result, $new_mer_id, 'mer');
 				return true;
 			}

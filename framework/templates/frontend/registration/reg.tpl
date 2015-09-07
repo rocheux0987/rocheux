@@ -4,16 +4,17 @@
 
 $(document).ready(function(){
     $('.hide').hide();
-	$(document).on('change' , '#country' ,function(){
-		var country = $(this).val();	
-		var url     = '{/literal}{"reg.php"|seo_url}{literal}/?act='+country;
-		
-		$.post(url , function(data){
-			if(data != ''){
-                $('#state_div').html(data);
-            }
-		});
-	});
+    $(document).on('change' , '#country' ,function(){
+      var country = $(this).val();	
+      var url     = '{/literal}{"reg.php"|seo_url}{literal}/?act='+country;
+
+      $.post(url , function(data){
+          if(data != '') {
+           $('#state_div').html(data);
+           $('.valmsg').hide();
+       }
+   });
+  });
 
     $(document).on('focus' , '#address_map' , function(){
         popup_open('#popup-addressmap');
@@ -21,9 +22,13 @@ $(document).ready(function(){
     });
 
     $(document).on('click' , '#save' , function(){
-        $("#address_map").val($('#us3-address').val());
+        $("#address_map").val($('#us3-address2').val());
         $("#lat").val($('#us3-lat').val());
         $("#lon").val($('#us3-lon').val());
+        $("#city").val($('#us3-city').val());
+        $("#country").val($('#us3-country').val());
+        $('#state_div').html('<div class="valmsg arrow_left hide"><small></small></div><input type="text" class="validation_check" name="reg_form[state]" placeholder="State" id="state" value="">');
+        $("#state").val($('#us3-stateOrProvince').val());
         popup_close();
     });
 
@@ -62,8 +67,12 @@ $(document).ready(function(){
 
     $(document).on('focusout' , '#email1' , function(){
         var ito = $(this);
-        
-        if($(this).val() != ""){
+        if(!validateEmail($(this).val())){
+            $(this).prev().show().find('small').html(" Not Valid Email").css({ color : "#ff0000"});
+            $(this).removeClass('success_form');
+            $(this).addClass('error_form');
+            $(this).attr('data-status' , 'no');
+        }else if($(this).val() != ""){
             $.ajax({
                 url:'{/literal}{"login.php"|seo_url}{literal}/?act=check_email',
                 type: "post",
@@ -86,34 +95,34 @@ $(document).ready(function(){
 
     });
 
-    $(document).on('focusout' , '#pass2' , function(){
+$(document).on('focusout' , '#pass2' , function(){
 
-        if($(this).val() == $('#pass1').val()){
-            $(this).prev().hide();
-            $(this).removeClass('error_form');
-            $(this).attr('data-status' , 'ok');
-        }else{
-            $(this).prev().show().find('small').html(" Password is not match").css({ color : "#ff0000"});
-            $(this).removeClass('success_form');
-            $(this).addClass('error_form');
-            $(this).attr('data-status' , 'no');
-        }
+    if($(this).val() == $('#pass1').val()){
+        $(this).prev().hide();
+        $(this).removeClass('error_form');
+        $(this).attr('data-status' , 'ok');
+    }else{
+        $(this).prev().show().find('small').html(" Password is not match").css({ color : "#ff0000"});
+        $(this).removeClass('success_form');
+        $(this).addClass('error_form');
+        $(this).attr('data-status' , 'no');
+    }
 
-    });
+});
 
 
-    $(document).on('focusout' , '#pass1' , function(){
-        if($(this).val().length < 8){
-            $(this).prev().show().find('small').html("Password must Contain atleast 8 Characters").css({ color : "#ff0000" });
-            $(this).removeClass('success_form');
-            $(this).addClass('error_form');
-            $(this).attr('data-status' , 'no');
-        }else{
-            $(this).prev().hide();
-            $(this).removeClass('error_form');
-            $(this).attr('data-status' , 'ok');
-        }
-    });
+$(document).on('focusout' , '#pass1' , function(){
+    if($(this).val().length < 8){
+        $(this).prev().show().find('small').html("Password must Contain atleast 8 Characters").css({ color : "#ff0000" });
+        $(this).removeClass('success_form');
+        $(this).addClass('error_form');
+        $(this).attr('data-status' , 'no');
+    }else{
+        $(this).prev().hide();
+        $(this).removeClass('error_form');
+        $(this).attr('data-status' , 'ok');
+    }
+});
 
 });
 
@@ -121,19 +130,19 @@ $(document).ready(function(){
 </script>
 {/literal}
 {if $prev eq true}
-    {literal}
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $('#email1').attr('data-status' , 'ok');
-                var country = $("#country").val();    
-                var url     = '{/literal}{"reg.php"|seo_url}{literal}/?act='+country;
-                
-                $.post(url , function(data){
-                    $('#state_div').html(data);
-                });
-            });
-        </script>      
-    {/literal}      
+{literal}
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#email1').attr('data-status' , 'ok');
+    var country = $("#country").val();    
+    var url     = '{/literal}{"reg.php"|seo_url}{literal}/?act='+country;
+
+    $.post(url , function(data){
+        $('#state_div').html(data);
+    });
+});
+</script>      
+{/literal}      
 {/if}
 <div class="signup-content">
     <img src="{$smarty.const._IMAGES_URL_}reg-gen-icon.png" class="genicon">
@@ -155,7 +164,7 @@ $(document).ready(function(){
                         </div>
                     </div>
 
-                      <!-- password -->
+                    <!-- password -->
                     <div class="control-group">
                         <div class="controls">
                             <div class="valmsg arrow_left hide">
@@ -173,8 +182,8 @@ $(document).ready(function(){
                             <input type="password" class="validation_check email_check" data-status="no" id="pass2" placeholder="{'confirm_password'|get_lang}" required >
                         </div>
                     </div>
- 
-                     <!-- first name -->
+
+                    <!-- first name -->
                     <div class="control-group">
                         <div class="controls">
                             <div class="valmsg arrow_left hide">
@@ -232,7 +241,7 @@ $(document).ready(function(){
                                 <label for='veterinarian' class="user_type">Veterinarian</label>
                             </li>
                         </ul>
-                    </div>
+                    </div> 
 
                     <!-- phone # -->
                     <div class="control-group">
@@ -244,14 +253,14 @@ $(document).ready(function(){
                         </div>
                     </div>
 
-                     <!-- city -->
+                    <!-- city -->
                     <div class="control-group">
                         <label></label>
                         <div class="controls">
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="text" class="validation_check" name="reg_form[city]" value="{$reg_form.city}" placeholder="{'city'|get_lang}">
+                            <input type="text" class="validation_check" name="reg_form[city]" id="city" value="{$reg_form.city}" placeholder="{'city'|get_lang}">
                         </div>
                     </div>
 
@@ -259,51 +268,51 @@ $(document).ready(function(){
                     <!-- <div class="control-group">
                        <label></label>
                        <input type="text" class="controls" id="state_div" placeholder="{$lang.state}">
-                    </div> -->
+                   </div> -->
 
-                    <!-- country -->
-                    <div class="control-group">
-                        <div class="controls">
-                            <div class="valmsg arrow_left hide">
-                                <small></small>
-                            </div>
-                            <select id="country" class="validation_check" name="reg_form[country]">
-                                <option value="">-- Select {'country'|get_lang} --</option>
-                                {foreach name="results" from=$country item=row }
-                                    <option value="{$row.code}"  {if $reg_form.country eq $row.code} selected="selected"{/if} >{$row.country}</option>
-                                {/foreach}
-                            </select>
+                   <!-- country -->
+                   <div class="control-group">
+                    <div class="controls">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
                         </div>
-                    </div>
-
-                    <!-- state -->
-                    <div class="control-group">
-                        <div class="controls" id="state_div">
-                            <div class="valmsg arrow_left hide">
-                                <small></small>
-                            </div>
-                            <input type="text" class="validation_check" name="reg_form[state]" placeholder="{'state'|get_lang}">
-                        </div>
+                        <select id="country" class="validation_check" name="reg_form[country]">
+                            <option value="">-- Select {'country'|get_lang} --</option>
+                            {foreach name="results" from=$country item=row }
+                            <option value="{$row.code}"  {if $reg_form.country eq $row.code} selected="selected"{/if} >{$row.country}</option>
+                            {/foreach}
+                        </select>
                     </div>
                 </div>
-                <br clear="all"/>
 
-                <!-- action submit -->
-                <div class="signup-submit right">
-                    <span class="left">
-                        <small>By clicking the Next button, you agree to our <a href="#" class="txtred">Terms</a><br/>
+                <!-- state -->
+                <div class="control-group">
+                    <div class="controls" id="state_div">
+                        <div class="valmsg arrow_left hide">
+                            <small></small>
+                        </div>
+                        <input type="text" class="validation_check" name="reg_form[state]" id="state" placeholder="{'state'|get_lang}">
+                    </div>
+                </div>
+            </div>
+            <br clear="all"/>
+
+            <!-- action submit -->
+            <div class="signup-submit right">
+                <span class="left">
+                    <small>By clicking the Next button, you agree to our <a href="#" class="txtred">Terms</a><br/>
                         and that you have read our <a href="#" class="txtred">Privacy policy</a>.</small>
                     </span>
                     &nbsp; &nbsp;
                     <div class="control-group right">
                         <div class="controls">
-                             <a href="#" class="btn-next button-primary">{'next'|get_lang}</a>
-                        </div>
-                    </div>
-                </div>
-    		</form>
-        </div>
-	</div>
+                           <a href="#" class="btn-next button-primary">{'next'|get_lang}</a>
+                       </div>
+                   </div>
+               </div>
+           </form>
+       </div>
+   </div>
 </div>
 
 <!-- MODAL -->
@@ -325,7 +334,7 @@ $(document).ready(function(){
                 </div>
                 <div class="map_container">
                     <div id="us3" class="map_canvas"></div>
-                 </div>
+                </div>
                 <div class="clearfix">&nbsp;</div>
             </div>
             <div class="popup-fields">
@@ -336,7 +345,7 @@ $(document).ready(function(){
                     <input type="text" class="form-control" style="width: 110px" id="us3-lat" disabled />
                 </div>
             </div>
-             <div class="popup-fields">
+            <div class="popup-fields">
                 <div class="popup-field-label">
                     Long.:
                 </div>
@@ -345,12 +354,12 @@ $(document).ready(function(){
                 </div>
             </div>
             <div>
-            <input type="hidden" class="form-control" style="width: 110px" id="us3-radius"  />
-            <input type="hidden" class="form-control" style="width: 110px" id="us3-country"  />
-            <input type="hidden" class="form-control" style="width: 110px" id="us3-stateOrProvince"  />
-            <input type="hidden" class="form-control" style="width: 110px" id="us3-district"  />
-            <input type="hidden" class="form-control" style="width: 110px" id="us3-city"  />
-            <input type="hidden" class="form-control" style="width: 110px" id="us3-address2"  />
+                <input type="hidden" class="form-control" style="width: 110px" id="us3-radius"  />
+                <input type="hidden" class="form-control" style="width: 110px" id="us3-country"  />
+                <input type="hidden" class="form-control" style="width: 110px" id="us3-stateOrProvince"  />
+                <input type="hidden" class="form-control" style="width: 110px" id="us3-district"  />
+                <input type="hidden" class="form-control" style="width: 110px" id="us3-city"  />
+                <input type="hidden" class="form-control" style="width: 110px" id="us3-address2"  />
             </div>
             <div class="clearfix"></div>
             <div class="popup-fields">
@@ -364,45 +373,45 @@ $(document).ready(function(){
 
 {literal}
 <script type="text/javascript" language="javascript">
-    if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            showPicker(position.coords.latitude, position.coords.longitude);
-        });
+if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        showPicker(position.coords.latitude, position.coords.longitude);
+    });
     
-        function updateControls(addressComponents) {
-            $('#us3-country').val(addressComponents.country);
-            $('#us3-stateOrProvince').val(addressComponents.stateOrProvince);
-            $('#us3-district').val(addressComponents.district);
-            $('#us3-city').val(addressComponents.city);
-            $('#us3-address2').val( [addressComponents.streetName, addressComponents.streetNumber].join(' ').trim());
-        }
-        
-        function showPicker(latitude, longitude){
-            $('#us3').locationpicker({
-                location: { latitude: latitude, longitude: longitude  },
-                radius: 200,
-                inputBinding: {
-                    latitudeInput: $('#us3-lat'),
-                    longitudeInput: $('#us3-lon'),
-                    radiusInput: $('#us3-radius'),
-                    locationNameInput: $('#us3-address')
-                },
-                onchanged: function (currentLocation, radius, isMarkerDropped) {
-                    var addressComponents = $(this).locationpicker('map').location.addressComponents;
-                    updateControls(addressComponents);
-                },
-                oninitialized: function(component) {
-                    var addressComponents = $(component).locationpicker('map').location.addressComponents;
-                    updateControls(addressComponents);
-                },
-                enableAutocomplete: true,
+    function updateControls(addressComponents) {
+        $('#us3-country').val(addressComponents.country);
+        $('#us3-stateOrProvince').val(addressComponents.stateOrProvince);
+        $('#us3-district').val(addressComponents.district);
+        $('#us3-city').val(addressComponents.city);
+        $('#us3-address2').val( [addressComponents.streetName, addressComponents.streetNumber].join(' ').trim());
+    }
+
+    function showPicker(latitude, longitude){
+        $('#us3').locationpicker({
+            location: { latitude: latitude, longitude: longitude  },
+            radius: 200,
+            inputBinding: {
+                latitudeInput: $('#us3-lat'),
+                longitudeInput: $('#us3-lon'),
+                radiusInput: $('#us3-radius'),
+                locationNameInput: $('#us3-address')
+            },
+            onchanged: function (currentLocation, radius, isMarkerDropped) {
+                var addressComponents = $(this).locationpicker('map').location.addressComponents;
+                updateControls(addressComponents);
+            },
+            oninitialized: function(component) {
+                var addressComponents = $(component).locationpicker('map').location.addressComponents;
+                updateControls(addressComponents);
+            },
+            enableAutocomplete: true,
                             // onchanged: function (currentLocation, radius, isMarkerDropped) {
                             //     // Uncomment line below to show alert on each Location Changed event
                             //     alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
                             // }
                         });
-        }
-        
-    }
+}
+
+}
 </script>
 {/literal}

@@ -1,58 +1,48 @@
 <div class="left-nav left">
     <div class="leftbox whitebox">
         <ul>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}notification.png" class="icon"><span>Newsfeed</span></a></li>
+        <li><a href="{"newsfeed.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}notification.png" class="icon" /></a><a href="{"newsfeed.php"|seo_url}"><span>Newsfeed</span></a></li>
         </ul>
     </div>
+
+	{if isset($user_data)}
+    <div class="leftbox whitebox">
+        <label class="text-muted">MEMBER OPTIONS</label>
+        <ul>
+            <li class="side-icon"><a class="create" href="{"upload.php"|seo_url}"></a><a href="{"upload.php"|seo_url}"><span>Create Post</span></a></li>
+            <li class="side-icon"><a class="switch" href="{"profile.php"|seo_url}/{$pet_id}/switch"></a><a href="{"profile.php"|seo_url}/{$pet_id}/switch"><span>Switch Profile</span></a></li>
+            <li class="side-icon"><a class="edit" href="{"profile.php"|seo_url}/{$pet_id}/edit"></a><a href="{"profile.php"|seo_url}/{$pet_id}/edit"><span>Edit Profile</span></a></li>
+        </ul>
+    </div>
+    {/if}
     
     <div class="leftbox whitebox">
         <label class="text-muted">PET NEEDS</label>
         <ul>
-            <li><a href="{"petshop.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}cart.png" class="icon"><span>Nearest Petshop</span></a></li>
-            <li><a href="{"vets.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}vet.png" class="icon"><span>Nearest Vet</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}petinsurance.png" class="icon"><span>Pet Insurance</span></a></li>
-            <li><a href="{"shelter.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}foundation.jpg" class="icon"><span>Animal Shelters</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}adopt.png" class="icon"><span>Adopt a Pet</span></a></li>
+            <li class="side-icon"><a class="petshops" href="{"petshop.php"|seo_url}"></a><a href="{"petshops.php"|seo_url}"><span>Nearest Petshops</span></a></li>
+            <li class="side-icon"><a class="vets" href="{"vets.php"|seo_url}"></a><a href="{"vets.php"|seo_url}"><span>Nearest Vets</span></a></li>
+            <li class="side-icon"><a class="shelters" href="#"></a><a href="{"shelters.php"|seo_url}"><span>Animal Shelters</span></a></li>
+            <li class="side-icon"><a class="adopt" href="#"></a><a href="{"adopt.php"|seo_url}"><span>Adopt a Pet</span></a></li>
         </ul>
     </div>
     
     <div class="leftbox whitebox">
         <label class="text-muted">PET WANTS</label>
         <ul>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}grooming.png" class="icon"><span>Pet groomers</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}pwalking.png" class="icon"><span>Pet Walkers</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}photel.png" class="icon"><span>Pet Boarding</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}pdating.png" class="icon"><span>Pet Dating</span></a></li>
+            <li class="side-icon"><a class="groomers" href="{"groomers.php"|seo_url}"></a><a href="{"groomers.php"|seo_url}"><span>Pet Groomers</span></a></li>
+            <li class="side-icon"><a class="walkers" href="{"walkers.php"|seo_url}"></a><a href="{"walkers.php"|seo_url}"><span>Pet Walkers</span></a></li>
+            <li class="side-icon"><a class="boarding" href="{"boarding.php"|seo_url}"></a><a href="{"boarding.php"|seo_url}"><span>Pet Boarding</span></a></li>
+            <li class="side-icon"><a class="dating" href="{"dating.php"|seo_url}"></a><a href="{"dating.php"|seo_url}"><span>Pet Dating</span></a></li>
         </ul>
     </div>
     
     <div class="leftbox whitebox">
         <label class="text-muted">PET-FRIENDLY</label>
         <ul>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}prestau.png" class="icon"><span>Restaurants</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}hotel.png" class="icon"><span>Hotels</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}park.png" class="icon"><span>Park/Beach</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}travel.png" class="icon"><span>Travel</span></a></li>
-        </ul>
-    </div>
-
-    <div class="leftbox whitebox">
-        <label class="text-muted">COMMUNITY</label>
-        <ul>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}walkbuddy.png" class="icon"><span>Walk w/ a Buddy</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}caretakers.png" class="icon"><span>Care Takers</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}gathering.png" class="icon"><span>Pet Gathering</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}findneighbors.png" class="icon"><span>Find My Neighbours</span></a></li>
-        </ul>
-    </div>
-
-    <div class="leftbox whitebox">
-        <label class="text-muted">WHAT TO WATCH</label>
-        <ul>
-            <li><a href="{"myuploads.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}upload.png" class="icon"><span>My Uploads</span></a></li>
-            <li><a href="{"petoftheweek.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}trophy.png" class="icon"><span>Pet of the Week</span></a></li>
-            <li><a href="{"history.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}history.png" class="icon"><span>History</span></a></li>
-            <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}ranger.png" class="icon"><span>Rocky Ranger</span></a></li>
+            <li class="side-icon"><a class="restaurants" href="{"restaurants.php"|seo_url}"></a><a href="{"restaurants.php"|seo_url}"><span>Restaurants</span></a></li>
+            <li class="side-icon"><a class="hotels" href="{"hotels.php"|seo_url}"></a><a href="{"restaurants.php"|seo_url}"><span>Hotels</span></a></li>
+            <li class="side-icon"><a class="park" href="{"park.php"|seo_url}"></a><a href="{"restaurants.php"|seo_url}"><span>Park/Beach</span></a></li>
+            <li class="side-icon"><a class="travel" href="{"travel.php"|seo_url}"></a><a href="{"restaurants.php"|seo_url}"><span>Travel</span></a></li>
         </ul>
     </div>
 </div>

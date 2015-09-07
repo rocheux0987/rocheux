@@ -54,7 +54,15 @@
 						<textarea id="tp_l10n_html" name="tp_l10n_html" rows="24">
 							{$l10n_vars.body_html}
 						</textarea>
-					</div>					
+					</div>
+				</div><br/>
+				<div class="span12" style="margin-top: 15px;">
+					<div class="span3">
+						<label for="tp_l10n_html">Body (Text)</label>
+					</div>
+					<div class="span6" style="margin-left:0px;">
+						<textarea id="tp_l10n_txt" name="tp_l10n_txt" style="width:100%; min-height:150px;">{ $l10n_vars.body_txt }</textarea>
+					</div>
 				</div>
 				<input class="btn btn-medium btn-primary" type="submit" value="Save">
 				<a href="{$cancel_link}" class="btn btn-medium btn-danger">Cancel</a>

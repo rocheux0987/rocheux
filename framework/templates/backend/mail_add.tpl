@@ -37,6 +37,14 @@
 						</textarea>
 					</div>	
 				</div>
+				<div class="span12" style="margin-top: 15px;">
+					<div class="span3">
+						<label for="tp_l10n_html">Body (Text)</label>
+					</div>
+					<div class="span6" style="margin-left:0px;">
+						<textarea id="tp_l10n_txt" name="tp_l10n_txt" row="24" style="width:100%; min-height:150px;"></textarea>
+					</div>
+				</div>
 				<p>Note: This template will be saved under {$language} l10n</p>
 				<input class="btn btn-medium btn-primary" type="submit" value="Save">
 				<a href="{$cancel_link}" class="btn btn-medium btn-danger">Cancel</a>

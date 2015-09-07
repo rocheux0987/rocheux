@@ -7,13 +7,13 @@
                 $(this).next().attr('data-attr' , 'hide');
                 $('.ss').addClass('mshow');
                 $('.ss').removeClass('mhide');
-                $(this).attr('src', 'images/menubtn_clicked.png');
+                $(this).attr('src', '{/literal}{$smarty.const._IMAGES_URL_}{literal}menubtn_clicked.png');
 
             }else{
                 $(this).next().attr('data-attr' , 'show');
                 $('.ss').addClass('mhide');
                 $('.ss').removeClass('mshow');
-                $(this).attr('src', '/rocky/images/menubtn.png');
+                $(this).attr('src', '{/literal}{$smarty.const._IMAGES_URL_}{literal}menubtn.png');
             }
         });
 
@@ -93,11 +93,13 @@
         <div class="login-top-menu right">
             <nav>
                 <ul >
-                    <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}nom1.jpg"><span class="hide-sm">Rocky</span></a></li>
+                {if isset($user_data.pet_data)}
+                    <li><a href="{"profile.php"|seo_url}/{$pet_id}/edit"><img src="{'pet'|fn_generate_thumbnail:$user_data.pet_data.pet_image.image_path:50:50:true}"><span class="hide-sm" style="text-transform:capitalize;">{$user_data.pet_data.pet_name}</span></a></li>
+                {/if}
                     <li class="line"></li>
                     <li class="no-icon"><a href="#"><span>Home</span></a></li>
                     <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}neighbors.png"></a></li>
-                    <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}message.png"></a></li>
+                    <li><a href="{"messages.php"|seo_url}"><img src="{$smarty.const._IMAGES_URL_}message.png"></a></li>
                     <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}notification.png"></li>
                     <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}find.png"></li>
                     <li><a href="#"><img src="{$smarty.const._IMAGES_URL_}track.png"></li>

@@ -13,7 +13,7 @@
                 <p>Please invite your friends by entering their emails here:</p>
                 <input type="text" class="invite" name="invite" placeholder="separated by comma">
                 <button class="button-primary btn-invite">Submit</button>
-                <a href="{"home.php"|seo_url}" class="button-primary btn-skip">Skip</a>
+                <a href="{"home.php"|seo_url}" class="button-primary btn-invite btn-skip">Skip</a>
             </div>
         </div>
     </div>
