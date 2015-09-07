@@ -19,11 +19,12 @@ switch ($_GET['act']) {
 		$info = $shelter_controller->get(null , $_GET['lat'] , $_GET['lon']);
 
 		foreach ($info as $key => $row){
-			$info[$key]['image'] = $images->fn_get_image($row['foundation_id'], 'foundation', $row['image'])  ;
+			$info[$key]['image'] = $images->fn_get_image($row['id'], 'foundation', $row['image'])  ;
 		}
 
 		$smarty->assign("data", $info);
 		$smarty->display(_TPL_FRONTEND_DIR_."ajax_display/nearest.tpl");
+		
 		die();
 		break;
 }

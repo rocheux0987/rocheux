@@ -83,9 +83,10 @@
 				$fileArray = $filesystem->fn_arrange_array($file['storeimage']);
 
 				foreach($fileArray as $image){
+					$image['name'] = time().'_'.$image['name'];
 					$arr = array(
 						'foundation_id' => $id,
-						'image' => '',
+						'image' => $image['name'],
 						'date' => time()
 					);
 

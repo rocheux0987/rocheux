@@ -18,6 +18,9 @@ class images{
 		}elseif($type == 'merchants'){
 			$table = '?:merchants';
 			$key = 'merchant_id';	
+		}elseif($type == 'foundations'){
+			$table = '?:foundations';
+			$key = 'foundation_id';
 		}else{
 			return false;
 		}
@@ -124,7 +127,7 @@ class images{
 			$key = 'vet_id';
 		}elseif($type == 'foundations'){
 			$table = '?:foundations';
-			$key = 'user_id';
+			$key = 'foundation_id';
 		}elseif($type == 'foundation_image'){
 			$table = '?:foundation_images';
 			$key = 'image_id';

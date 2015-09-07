@@ -16,7 +16,7 @@ class shelter{
 				ON foundations.user_id = user.user_id
 				INNER JOIN ".$this->countries_lang_table." country
 				ON country.code = user.country
-				WHERE user.type = 'M' AND foundations.status = 'A'  AND country.lang_code = ?s AND foundations.name LIKE ?s"
+				WHERE user.type = 'P' AND foundations.status = 'A'  AND country.lang_code = ?s AND foundations.name LIKE ?s"
 				, _CLIENT_LANGUAGE_ , '%'.$search.'%');
 		}else{
 
@@ -33,7 +33,7 @@ class shelter{
 				INNER JOIN ".$this->countries_lang_table." country
 				ON country.code = user.country
 				WHERE foundations.status = 'A'  AND country.lang_code = ?s AND 
-				user.type = 'M' and user.lat > ?s AND user.lat < ?s  AND user.lon > ?s AND user.lon < ?s"
+				user.type = 'P' and user.lat > ?s AND user.lat < ?s  AND user.lon > ?s AND user.lon < ?s"
 				, _CLIENT_LANGUAGE_ , $lat2 , $lat1 , $lon2 , $lon1);
 		}
 	}
