@@ -10,7 +10,7 @@
     $posts[$key]['image'] = $images->fn_get_image($post['post_id'], 'post', $post['image']);
     $thumb = $images->fn_get_image($post['pet_id'], 'pet', $post['thumb']);
     if(!$thumb) {
-      $posts[$key]['thumb'] = _SITE_DOMAIN_HTTP_.'images/default-pic.png';
+      $posts[$key]['thumb'] = _IMAGES_URL_.'default-pic.png';
     } else {
       $posts[$key]['thumb'] = $images->fn_generate_thumbnail('pet', $thumb['image_path'], 48, 48, true);
     }
@@ -45,7 +45,7 @@
   /* create object for class misc so we can use its functions on our template file */
   $misc = new misc();
   $smarty->assign("misc", $misc);
-
+  
   #Smarty display.
   $smarty->display(_TPL_FRONTEND_DIR_."index.tpl");
 ?>
