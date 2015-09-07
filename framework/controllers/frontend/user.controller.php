@@ -38,7 +38,7 @@
 				'state' => $user['reg_form']["state"]
 				);
 
-			$id = $db->db_query("INSERT INTO ".$this->user_table." ?e ",$user_arr);
+			#$id = $db->db_query("INSERT INTO ".$this->user_table." ?e ",$user_arr);
 
 
 			if($type == 'B'){
@@ -46,11 +46,11 @@
 			}else if($type == 'M'){
 				$this->mercregister($user['merc_form'] , $file , $id);
 			}else if($type == 'V'){
-				$this->vetregister($user['vetreg_form'] , $file , $id);
+			    $this->vetregister($user['vetreg_form'] , $file , $id);
 			}else if($type == 'P'){
 				$this->foundationregister($user['shelter_form'] , $file , $id);
 			}else{
-				return;
+				return false;
 			}
 
 			return $id;
@@ -68,7 +68,7 @@
 				'work_schedules' => $info['work_schedules'],
 				'about' => $info['about'],
 				'mission' => $info['mission'],
-				'image' => '',
+				'image' => $file['mercimage']['name'],
 				'date' => time(),
 				'status' => 'A'
 				);
@@ -118,7 +118,7 @@
 				'weight' => $pet["weight"],
 				'feeding_time' => $pet["feeding_time"],
 				'birthdate' => time($pet["birthdate"]),
-				'image' => '',
+				'image' => $file['petimage']['name'],
 				);
 			$check = $db->db_query("INSERT INTO ".$this->pet_table." ?e ",$pet_arr);
 
@@ -130,7 +130,7 @@
 			return false;
 		}
 
-		function vetregister($vet , $file , $id){
+		function vetregister($vet , $file , $id = 0){
 			global $notifications, $db , $filesystem, $images;
 
 			$file['logo']['name'] = time().'_'.$file['logo']['name'];
@@ -143,7 +143,7 @@
 				'vet_association' => $vet["vet_association"],
 				'licenses' => $vet["licenses"],
 				'notes' => $vet["notes"],
-				'image' => '',
+				'image' => $file['logo']['name'],
 				'date' => time(),
 				'status' => 'A'
 				);
@@ -177,10 +177,10 @@
 						'date' => time()
 					);
 
-					$sql = $db->db_query("INSERT INTO ".$this->vet_images." ?e" , $arr);
+					$db->db_query("INSERT INTO ".$this->vet_images." ?e" , $arr);
 
 					$upload_result = $filesystem->fn_upload($image);
-					$images->fn_update_image($upload_result, $new_vet_id, 'vet_images');
+					$images->fn_update_image($upload_result, 2 , 'vet_images');
 				}
 				
 				/* END MULTIPLE IMAGE UPLOAD */
@@ -201,7 +201,7 @@
 				'contact_number' => $mer["contact_number"],
 				'website' => $mer["website"],
 				'work_schedules' => $mer["work_schedules"],
-				'image' => '',
+				'image' => $file['mercimage']['name'],
 				'date' => time(),
 				'address_id' => 0,
 				'status' => 'A'
@@ -210,8 +210,7 @@
 			$new_mer_id = $db->db_query("INSERT INTO ".$this->mer_table." ?e ",$merc_arr);
 
 			if($new_mer_id){
-				// vet upload image
-				$file['mercimage']['name'] = time().'_'.$file['mercimage']['name'];
+				// Merchant upload image
 				$upload_result = $filesystem->fn_upload($file['mercimage']);
 				$images->fn_update_image($upload_result, $new_mer_id, 'mer');
 				return true;

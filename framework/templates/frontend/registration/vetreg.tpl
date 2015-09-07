@@ -155,7 +155,7 @@ $(document).ready(function(){
                     <div class="control-group left">
                         <label class="imgup">{$lang.image}</label>
                         <div class="controls">
-                            <input type="file" name="vetimage[]" class="hidden" id="vetimage" multiple>
+                            <input type="file" name="logo" class="hidden">
                             <a href="javascript:void(0)" class="browse">Browse</a>
                         </div>
                     </div>
@@ -164,7 +164,7 @@ $(document).ready(function(){
                     <div class="control-group right">
                         <label class="imgup">{$lang.image}</label>
                         <div class="controls">
-                            <input type="file" name="vetimage[]" class="hidden" id="vetimage" accept="image/*" multiple>
+                            <input type="file" name="vetimage[]" class="hidden"  accept="image/*" multiple>
                             <a href="javascript:void(0)" class="browse">Browse</a>
                         </div>
                     </div>

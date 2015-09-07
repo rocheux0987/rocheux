@@ -163,6 +163,7 @@ if($_POST){
 	}else if($_GET['act'] == 'third step'){
 
 		$id = $user_controller->register($_POST , $_FILES , $_POST['reg_form']['user_type']);
+
 		
 		//move to controller
 		$sql = $db->db_get_array('SELECT country , status , email , first_name , last_name , type , user_id FROM ?:users WHERE user_id = ?s' , $id);
@@ -187,8 +188,9 @@ if($_POST){
 		
 
 		//redirect to home
-		$common->redirect($friendly->get_seourl_by_module("home"));
-		exit();
+		$smarty->assign("name" , $sql[0]['first_name'].' '.$sql[0]['last_name']);
+		$smarty->assign("section_template", 'thanks.tpl');
+		
 	}
 
 }else{

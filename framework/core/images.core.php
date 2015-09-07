@@ -121,7 +121,7 @@ class images{
 			$key = 'vet_id';
 		}elseif($type == 'vet_images'){
 			$table = '?:vet_images';
-			$key = 'image_id';
+			$key = 'vet_id';
 		}elseif($type == 'foundations'){
 			$table = '?:foundations';
 			$key = 'user_id';

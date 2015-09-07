@@ -127,7 +127,7 @@ $(document).ready(function(){
                 <div class="control-group right">
                     <label class="imgup">Store Image:</label>
                     <div class="controls">
-                        <input type="file" name="storeimage" id="storeimage" class="hidden" accept="image/*" multiple >
+                        <input type="file" name="storeimage[]" id="storeimage" class="hidden" accept="image/*" multiple >
                         <a href="javascript:void(0)" class="browse">Browse</a>
                     </div>
                 </div>
