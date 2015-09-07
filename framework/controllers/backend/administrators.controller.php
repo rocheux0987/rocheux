@@ -77,7 +77,6 @@ class administrators {
 		global $db;
 		
 		$user_data=$db->db_get_row("SELECT id, status FROM ".$this->administrators_table." WHERE (email = ?s OR username = ?s) AND password = MD5(?s) LIMIT 1", $username, $username, $password);
-
 		if (empty($user_data["id"])){
 			return "non-existent";
 		}elseif($user_data["status"] == 0){

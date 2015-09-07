@@ -5,6 +5,7 @@
         <title>{$section_title}</title>
         <link rel="shortcut icon" href="{$smarty.const._IMAGES_URL_}favicon.png">
         {style src="style.css"}
+        {style src="fred.css"}
         {style src="jquery-ui.css"}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>

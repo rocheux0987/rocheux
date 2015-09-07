@@ -9,10 +9,11 @@ $(document).ready(function(){
 		var url     = '{/literal}{"reg.php"|seo_url}{literal}/?act='+country;
 		
 		$.post(url , function(data){
-			if(data != ''){
-                $('#state_div').html(data);
-            }
-		});
+		if(data != '') {
+	                $('#state_div').html(data);
+                        $('.valmsg').hide();
+                }
+	   });
 	});
 
     $(document).on('focus' , '#address_map' , function(){
@@ -21,9 +22,13 @@ $(document).ready(function(){
     });
 
     $(document).on('click' , '#save' , function(){
-        $("#address_map").val($('#us3-address').val());
+        $("#address_map").val($('#us3-address2').val());
         $("#lat").val($('#us3-lat').val());
         $("#lon").val($('#us3-lon').val());
+		$("#city").val($('#us3-city').val());
+        $("#country").val($('#us3-country').val());
+		$('#state_div').html('<div class="valmsg arrow_left hide"><small></small></div><input type="text" class="validation_check" name="reg_form[state]" placeholder="State" id="state" value="">');
+        $("#state").val($('#us3-stateOrProvince').val());
         popup_close();
     });
 
@@ -62,8 +67,12 @@ $(document).ready(function(){
 
     $(document).on('focusout' , '#email1' , function(){
         var ito = $(this);
-        
-        if($(this).val() != ""){
+        if(!validateEmail($(this).val())){
+            $(this).prev().show().find('small').html(" Not Valid Email").css({ color : "#ff0000"});
+            $(this).removeClass('success_form');
+            $(this).addClass('error_form');
+            $(this).attr('data-status' , 'no');
+        }else if($(this).val() != ""){
             $.ajax({
                 url:'{/literal}{"login.php"|seo_url}{literal}/?act=check_email',
                 type: "post",
@@ -251,7 +260,7 @@ $(document).ready(function(){
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="text" class="validation_check" name="reg_form[city]" value="{$reg_form.city}" placeholder="{'city'|get_lang}">
+                            <input type="text" class="validation_check" name="reg_form[city]" id="city" value="{$reg_form.city}" placeholder="{'city'|get_lang}">
                         </div>
                     </div>
 
@@ -282,7 +291,7 @@ $(document).ready(function(){
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="text" class="validation_check" name="reg_form[state]" placeholder="{'state'|get_lang}">
+                            <input type="text" class="validation_check" name="reg_form[state]" id="state" placeholder="{'state'|get_lang}">
                         </div>
                     </div>
                 </div>

@@ -68,7 +68,7 @@
 				'work_schedules' => $info['work_schedules'],
 				'about' => $info['about'],
 				'mission' => $info['mission'],
-				'image' => $file['mercimage']['name'],
+				'image' => '',
 				'date' => time(),
 				'status' => 'A'
 				);
@@ -83,11 +83,11 @@
 				$fileArray = $filesystem->fn_arrange_array($file['storeimage']);
 
 				foreach($fileArray as $image){
-					$arr = [ 
+					$arr = array(
 						'foundation_id' => $id,
-						'image' => time().'_'.$image['name'],
+						'image' => '',
 						'date' => time()
-					];
+					);
 
 					$sql = $db->db_query("INSERT INTO ".$this->foundation_image." ?e" , $arr);
 
@@ -118,12 +118,12 @@
 				'weight' => $pet["weight"],
 				'feeding_time' => $pet["feeding_time"],
 				'birthdate' => time($pet["birthdate"]),
-				'image' => $file['petimage']['name'],
+				'image' => '',
 				);
 			$check = $db->db_query("INSERT INTO ".$this->pet_table." ?e ",$pet_arr);
 
 			if($check){
-				$upload_result = $filesystem->fn_upload($file);
+				$upload_result = $filesystem->fn_upload($file['petimage']);
 				$images->fn_update_image($upload_result, $check, 'pet');
 				return true;
 			}
@@ -143,7 +143,7 @@
 				'vet_association' => $vet["vet_association"],
 				'licenses' => $vet["licenses"],
 				'notes' => $vet["notes"],
-				'image' => $file['logo']['name'],
+				'image' => '',
 				'date' => time(),
 				'status' => 'A'
 				);
@@ -171,11 +171,11 @@
 				$fileArray = $filesystem->fn_arrange_array($file['vetimage']);
 
 				foreach($fileArray as $image){
-					$arr = [ 
+					$arr = array(
 						'vet_id' => $new_vet_id,
 						'image' => time().'_'.$image['name'],
 						'date' => time()
-					];
+					);
 
 					$sql = $db->db_query("INSERT INTO ".$this->vet_images." ?e" , $arr);
 
@@ -201,7 +201,7 @@
 				'contact_number' => $mer["contact_number"],
 				'website' => $mer["website"],
 				'work_schedules' => $mer["work_schedules"],
-				'image' => $file['mercimage']['name'],
+				'image' => '',
 				'date' => time(),
 				'address_id' => 0,
 				'status' => 'A'
@@ -212,7 +212,7 @@
 			if($new_mer_id){
 				// vet upload image
 				$file['mercimage']['name'] = time().'_'.$file['mercimage']['name'];
-				$upload_result = $filesystem->fn_upload($file);
+				$upload_result = $filesystem->fn_upload($file['mercimage']);
 				$images->fn_update_image($upload_result, $new_mer_id, 'mer');
 				return true;
 			}

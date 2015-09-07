@@ -1,4 +1,8 @@
 <?php
+//session_destroy();
+//echo "sess: ".$_SESSION['user_data']['pet_data']['pet_id'];
+
+//move to controller (set cache)
 $pets_of_the_week = $db->db_get_array("select pet_id, name, image from ?:pets limit ?i",3);
 
 foreach ($pets_of_the_week as $key=>$pet){
@@ -7,6 +11,7 @@ foreach ($pets_of_the_week as $key=>$pet){
 
 //$common->fn_print_r($pets_of_the_week);
 
+//move to controller (set cache)
 $slider = $db->db_get_array("select image from ?:sliders inner join ?:sliders_lang on ?:sliders.slide_id = ?:sliders_lang.slide_id where status = 'A' AND lang_code = ?s order by position ASC " , _CLIENT_LANGUAGE_);
 
 #Smarty assigns
