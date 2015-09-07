@@ -486,7 +486,7 @@ img.slick-next {
 }
 
 .newsfeed-cont {
-  padding: 0 25px 20px;
+  padding: 25px;
 }
 
 /*===RIGHT NAV===*/
@@ -909,6 +909,9 @@ p.modal-title {
 .nearest-content {
   padding: 15px 0;
   overflow: hidden;
+}
+.newsfeed-top h5 {
+  margin-top: 0;
 }
 .nearest-content  > .left {
   width: 39%;

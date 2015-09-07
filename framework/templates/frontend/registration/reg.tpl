@@ -179,7 +179,7 @@ $(document).ready(function(){
                             <div class="valmsg arrow_left hide">
                                 <small></small>
                             </div>
-                            <input type="password" class="validation_check email_check" data-status="no" id="pass2" placeholder="{'confirm_password'|get_lang}" required >
+                            <input type="password" class="validation_check email_check"  id="pass2" placeholder="{'confirm_password'|get_lang}" required >
                         </div>
                     </div>
 
@@ -306,7 +306,7 @@ $(document).ready(function(){
                     &nbsp; &nbsp;
                     <div class="control-group right">
                         <div class="controls">
-                           <a href="#" class="btn-next button-primary">{'next'|get_lang}</a>
+                           <a href="javascript:void(0);" class="btn-next button-primary">{'next'|get_lang}</a>
                        </div>
                    </div>
                </div>
