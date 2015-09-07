@@ -190,8 +190,8 @@ input.datepicker {
   margin: 5px;
 } 
 .header .login-top-menu > nav > ul > li > ul > li > a > span{
-   color:red;
-   font-size: 12px; 
+  color:red;
+  font-size: 12px; 
 }
 .arrow_box:after, .arrow_box:before {
   bottom: 100%;
@@ -929,12 +929,15 @@ p.modal-title {
   font-size: 10px;
   color: white;
 }
-
 .nother-infos {
   margin: 15px 0;
+  padding-top: 5px;
 }
 .nearest-content > div > a img {
   width: 100%;
+}
+.naddress p, .nother-infos a, .nother-infos a span {
+  font-size: 12px;
 }
 
 /*===MAP===*/
