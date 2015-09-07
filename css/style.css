@@ -1416,6 +1416,14 @@ button.upload {
     float: none;
   }
 
+  .general > div > form input, .general > div > form textarea {
+    padding: 8px 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 2px solid #D2D2D2;
+    width: 100%;
+  }
+
   .general h2 {
     margin: 40px 0 20px;
     text-align: left;
