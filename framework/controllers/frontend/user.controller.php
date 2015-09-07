@@ -38,7 +38,7 @@
 				'state' => $user['reg_form']["state"]
 				);
 
-			#$id = $db->db_query("INSERT INTO ".$this->user_table." ?e ",$user_arr);
+			$id = $db->db_query("INSERT INTO ".$this->user_table." ?e ",$user_arr);
 
 
 			if($type == 'B'){
@@ -130,7 +130,7 @@
 			return false;
 		}
 
-		function vetregister($vet , $file , $id = 0){
+		function vetregister($vet , $file , $id){
 			global $notifications, $db , $filesystem, $images;
 
 			$file['logo']['name'] = time().'_'.$file['logo']['name'];
@@ -171,16 +171,17 @@
 				$fileArray = $filesystem->fn_arrange_array($file['vetimage']);
 
 				foreach($fileArray as $image){
+					$image['name'] = time().'_'.$image['name'];
 					$arr = array(
 						'vet_id' => $new_vet_id,
-						'image' => time().'_'.$image['name'],
+						'image' => $image['name'],
 						'date' => time()
 					);
 
 					$db->db_query("INSERT INTO ".$this->vet_images." ?e" , $arr);
 
 					$upload_result = $filesystem->fn_upload($image);
-					$images->fn_update_image($upload_result, 2 , 'vet_images');
+					$images->fn_update_image($upload_result, $new_vet_id , 'vet_images');
 				}
 				
 				/* END MULTIPLE IMAGE UPLOAD */

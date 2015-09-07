@@ -19,7 +19,11 @@
 				{/literal}
 				<div>
 					<div class="naddress left" style="padding-top:10px;">
-						<p>{$row.address}</p>	
+						<p>
+							<span>{$row.address}</span><br>
+							<span>{$row.state}</span><br>
+							<span>{$row.city}</span>
+						</p>	
 					</div>
 					<div class="nother-infos right">
 						<a href="tel:{$row.contact_number}"><i class="fa fa-phone"></i> <span>{$row.contact_number}</span></a>
