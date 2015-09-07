@@ -120,7 +120,7 @@ if($_POST){
 		
 		if ($_POST['reg_form']['user_type'] == 'B' || $_POST['reg_form']['user_type'] == 'V'){
 			//move to controller
-			$pet = $user_controller->get_pet();
+			$pet = $user_controller->get_pet_types();
 		}
 		switch ($_POST['reg_form']['user_type']) {
 			case 'B':
@@ -161,11 +161,9 @@ if($_POST){
 	}else if($_GET['act'] == 'third step'){
 
 		$data = $user_controller->register($_POST , $_FILES , $_POST['reg_form']['user_type']);	
-		
-		$user_controller->do_login($data);
+		$user_controller->go_login($data);
 		
 
-		//redirect to home
 		$smarty->assign("name" , $data['user']['first_name'].' '.$data['user']['last_name']);
 		$smarty->assign("section_template", 'thanks.tpl');
 		
@@ -182,7 +180,7 @@ if($_POST){
 		$country = $_GET['act']; 
 		
 		//move to controller
-		$state = $db->db_get_array('SELECT DISTINCT state, code FROM ?:states INNER JOIN ?:states_lang ON ?:states.state_id = ?:states_lang.state_id WHERE country_code = ?s', $country);
+		$state = $user_controller->get_state($country);
 		
 		if(count($state) > 0){
 			echo '

@@ -241,7 +241,7 @@
 
 
 
-		function get_pet(){
+		function get_pet_types(){
 			global $db;
 
 			return $db->db_get_array('
@@ -252,6 +252,14 @@
 				WHERE pl.lang_code = ?s', _CLIENT_LANGUAGE_);
 		}
 
+		function get_pet($id){
+			global $db;
+
+			return  $db->db_get_array('
+				SELECT name , pet_id, image 
+				FROM '.$this->pet_table.'
+				WHERE user_id = ?i ORDER BY pet_id ASC LIMIT 1' , $id);
+		}
 
 		function get_breed($pet_type_id){
 			global $db;
@@ -318,17 +326,8 @@
 
 			return $db->db_get_array('
 				SELECT country , status , email , first_name , last_name , type , user_id 
-				FROM '.$user_table.' 
+				FROM '.$this->user_table.' 
 				WHERE user_id = ?s' , $id);
-		}
-
-		function get_pet($id){
-			global $db;
-
-			return  $db->db_get_array('
-				SELECT name , pet_id, image 
-				FROM '.$pet_table.'
-				WHERE user_id = ?i ORDER BY pet_id ASC LIMIT 1' , $id);
 		}
 
 		function get_country(){
@@ -337,8 +336,19 @@
 			return $db->db_get_array('SELECT code , country from ?:countries_lang WHERE lang_code = ?s',_CLIENT_LANGUAGE_);
 		}
 
+		function get_state($country){
+			global $db;
+
+			return $db->db_get_array('
+				SELECT DISTINCT state, code 
+				FROM ?:states 
+				INNER JOIN ?:states_lang ON ?:states.state_id = ?:states_lang.state_id 
+				WHERE country_code = ?s', $country);
+		}
+
 
 		function go_login($data){
+			global $images;
 
 			$_SESSION['user_data']['user_id'] = $data['user']['user_id'];
 			$_SESSION['user_data']['user_type'] = $data['user']['type'];
