@@ -30,6 +30,7 @@ switch ($_GET['act']) {
 
 
 
+
 #Smarty assigns
 $smarty->assign("section_title", "Pet Foundation");
 $smarty->assign("section_template", 'shelter.tpl');

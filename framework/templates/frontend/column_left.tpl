@@ -19,7 +19,7 @@
     <div class="leftbox whitebox">
         <label class="text-muted">PET NEEDS</label>
         <ul>
-            <li class="side-icon"><a class="petshops" href="{"petshop.php"|seo_url}"></a><a href="{"petshops.php"|seo_url}"><span>Nearest Petshops</span></a></li>
+            <li class="side-icon"><a class="petshops" href="{"petshop.php"|seo_url}"></a><a href="{"petshop.php"|seo_url}"><span>Nearest Petshops</span></a></li>
             <li class="side-icon"><a class="vets" href="{"vets.php"|seo_url}"></a><a href="{"vets.php"|seo_url}"><span>Nearest Vets</span></a></li>
             <li class="side-icon"><a class="shelters" href="#"></a><a href="{"shelters.php"|seo_url}"><span>Animal Shelters</span></a></li>
             <li class="side-icon"><a class="adopt" href="#"></a><a href="{"adopt.php"|seo_url}"><span>Adopt a Pet</span></a></li>

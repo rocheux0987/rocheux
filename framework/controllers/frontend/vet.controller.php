@@ -10,7 +10,7 @@ class vet{
 		global $db;
 		if($search != null){
 			$vets_info = $db->db_get_array("
-				SELECT vet.vet_id , user.email , vet.image , user.first_name , user.last_name , vet.contact_number , user.address , user.city , user.state , user.lat , user.lon, country.country 
+				SELECT vet.vet_id as id, user.email , vet.image , user.first_name , user.last_name , vet.contact_number , user.address , user.city , user.state , user.lat , user.lon, country.country 
 				FROM ".$this->user_table." user
 				INNER JOIN ".$this->vet_table." vet
 				ON vet.user_id = user.user_id
@@ -26,7 +26,7 @@ class vet{
 			$lon2 = $lon-0.025;
 
 			$vets_info = $db->db_get_array("
-				SELECT vet.vet_id , user.email , vet.image , user.first_name , user.last_name , vet.contact_number , user.address , user.city , user.state , user.lat , user.lon, country.country 
+				SELECT vet.vet_id as id, user.email , vet.image , user.first_name , user.last_name , vet.contact_number , user.address , user.city , user.state , user.lat , user.lon, country.country 
 				FROM ".$this->user_table." user 
 				INNER JOIN ".$this->vet_table ." vet
 				ON vet.user_id = user.user_id

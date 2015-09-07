@@ -78,7 +78,7 @@ $(document).ready(function(){
                 type: "post",
                 data: { email : ito.val() } ,
                 success: function(response){
-                    if(response != '1'){
+                    if(response != 1){
                         ito.prev().show().find('small').html(" Email is Available").css({ color : "#00ff00"});
                         ito.removeClass('error_form');
                         ito.addClass('success_form');

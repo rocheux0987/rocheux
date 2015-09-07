@@ -54,7 +54,7 @@
 				    var latitude = event.latLng.lat();
     				var longitude = event.latLng.lng();
 				    $.ajax({
-						url: '{/literal}{"shelter.php"|seo_url}{literal}/?act=nearest',
+						url: '{/literal}{"shelters.php"|seo_url}{literal}/?act=nearest',
 						type: "GET",
 						data: {lat : latitude , lon : longitude},
 						success: function(response){
@@ -67,7 +67,7 @@
 				});
 
 				$.ajax({
-					url: '{/literal}{"shelter.php"|seo_url}{literal}/?act=nearest',
+					url: '{/literal}{"shelters.php"|seo_url}{literal}/?act=nearest',
 					type: "GET",
 					data: {lat : position.coords.latitude , lon : position.coords.longitude},
 					success: function(response){

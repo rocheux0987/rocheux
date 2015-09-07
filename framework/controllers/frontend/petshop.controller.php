@@ -10,7 +10,7 @@ class petshop{
 		global $db;
 		if($search != null){
 			return $db->db_get_array("
-				SELECT merchant.merchant_id , user.email , user.first_name , user.last_name  , user.address , user.city , merchant.image , user.state , user.lat , user.lon, country.country 
+				SELECT merchant.merchant_id as id , user.email , user.first_name , user.last_name  , user.address , user.city , merchant.image , user.state , user.lat , user.lon, country.country 
 				FROM ".$this->user_table." user
 				INNER JOIN ".$this->merchant_table." merchant
 				ON merchant.user_id = user.user_id
@@ -26,7 +26,7 @@ class petshop{
 			$lon2 = $lon-0.025;
 
 			return $db->db_get_array("
-				SELECT merchant.merchant_id , user.email , user.first_name , user.last_name  , user.address , user.city , merchant.image , user.state , user.lat , user.lon, country.country 
+				SELECT merchant.merchant_id as id , user.email , user.first_name , user.last_name  , user.address , user.city , merchant.image , user.state , user.lat , user.lon, country.country 
 				FROM ".$this->user_table." user 
 				INNER JOIN ".$this->merchant_table." merchant
 				ON merchant.user_id = user.user_id

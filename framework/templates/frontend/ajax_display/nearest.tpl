@@ -11,10 +11,10 @@
 			</div>
 
 			<div class="nearest-infos right">
-				<div class="map-canvas" id="map_{$row.vet_id}"></div>
+				<div class="map-canvas" id="map_{$row.id}"></div>
 				{literal}
 				<script type="text/javascript">
-				initMap({/literal}{$row.lat}{literal}, {/literal}{$row.lon}{literal} , 'map_{/literal}{$row.vet_id}{literal}');
+				initMap({/literal}{$row.lat}{literal}, {/literal}{$row.lon}{literal} , 'map_{/literal}{$row.id}{literal}');
 				</script>
 				{/literal}
 				<div>
