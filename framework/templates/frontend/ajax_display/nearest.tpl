@@ -18,10 +18,10 @@
 				</script>
 				{/literal}
 				<div>
-					<div class="naddress left" style="width:50%;padding-top:10px;">
+					<div class="naddress left" style="padding-top:10px;">
 						<p>{$row.address}</p>	
 					</div>
-					<div class="nother-infos right" style="width:40%;">
+					<div class="nother-infos right">
 						<a href="tel:{$row.contact_number}"><i class="fa fa-phone"></i> <span>{$row.contact_number}</span></a>
 						<br>
 						<a href="mailto:{$row.email}"><i class="fa fa-envelope"></i> <span>{$row.email}</span></a>

@@ -932,6 +932,10 @@ p.modal-title {
 .nother-infos {
   margin: 15px 0;
   padding-top: 5px;
+  width: 40%;
+}
+.naddress {
+  width: 50%;
 }
 .nearest-content > div > a img {
   width: 100%;
@@ -1619,6 +1623,15 @@ button.upload {
     border: 1px solid #CECECE;
     margin-left: -40px;
   }
+  .naddress, .nother-infos {
+    float: left;
+    width: 100%;
+  }
+
+  .nother-infos {
+    padding-top: 0;
+    margin-top: 8px;
+  }
 }
 
 @media only screen and (max-width: 530px) {
@@ -1696,11 +1709,6 @@ button.upload {
 }
 
 @media only screen and (max-width: 497px) {
-  .nother-infos {
-    margin: 0;
-    float: left;
-  }
-
   .newsfeed-bottom span {
     position: absolute;
     z-index: 11;
