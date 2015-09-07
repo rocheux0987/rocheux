@@ -120,15 +120,15 @@
             initMap({/literal}{$row.lat}{literal}, {/literal}{$row.lon}{literal} , 'map_{/literal}{$row.vet_id}{literal}');
           </script>
           {/literal}
-      </div>
-      <div>
-          <div class="naddress left" style="padding-top:10px;"><p>{$row.address}</p></div>
-          <div class="nother-infos right">
-            <a href="tel:{$row.contact_number}"><i class="fa fa-phone"></i> <span>{$row.contact_number}</span></a>
-            <br />
-            <a href="mailto:{$row.email}"><i class="fa fa-envelope"></i> <span>{$row.email}</span></a>
-          </div>
-        <br clear="all"/>
+          <div>
+            <div class="naddress left" style="padding-top:10px;"><p>{$row.address}</p></div>
+            <div class="nother-infos right">
+              <a href="tel:{$row.contact_number}"><i class="fa fa-phone"></i> <span>{$row.contact_number}</span></a>
+              <br />
+              <a href="mailto:{$row.email}"><i class="fa fa-envelope"></i> <span>{$row.email}</span></a>
+            </div>
+          <br clear="all"/>
+        </div>
       </div>
     </div>
   </div>
