@@ -110,7 +110,7 @@
 <!-- NEWSFEED AREA-->
 <div class="newsfeed whitebox">
   <!-- NEWSFEED CONTENT -->
-  <div class="newsfeed-content">
+  <div class="newsfeed-cont">
     <div class="row nearest-content">
       <div class="map-image left"><a href="#"><img src="{$row.image.image_path}" /></a></div>
       <div class="nearest-infos right">
@@ -131,23 +131,22 @@
         </div>
       </div>
     </div>
+    <!-- COMMENT SECTION -->
+    <div class="row newsfeed-bottom">
+      <div>
+        <a href="javascript:void(0);" class="flag-post {$post.liked} left" id="flag-{$post.post_id}" title="{$post.liked} this Post"><span>Flag</span></a>
+      </div>
+      <div>
+        <a href="javascript:void(0);" class="comment-down left" id="comment-{$post.post_id}" title="Comment on this Post"><span>Comment</span></span></a>
+      </div>
+      <br clear="all"/>
+    </div>
+    <!-- END COMMENT SECTION -->
   </div>
 <!-- END NEWSFEED CONTENT -->
-
-  <!-- COMMENT SECTION -->
-  <div class="row newsfeed-bottom">
-    <div>
-      <a href="javascript:void(0);" class="flag-post {$post.liked} left" id="flag-{$post.post_id}" title="{$post.liked} this Post"><span>Flag</span></a>
-    </div>
-    <div>
-      <a href="javascript:void(0);" class="comment-down left" id="comment-{$post.post_id}" title="Comment on this Post"><span>Comment</span></span></a>
-    </div>
-    <br clear="all"/>
-  </div>
-  <!-- END COMMENT SECTION -->
 </div>
 <div class="whitebox comment-area" id="comment-area-{$post.post_id}">
-  <div class="commentarea-cont">
+  <div class="newsfeed-cont">
     <div class="text-left loading-dots hidden">
       <!--<a href="#"><span>...</span></a>--><br />
     </div>

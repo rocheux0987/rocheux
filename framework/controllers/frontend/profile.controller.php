@@ -96,9 +96,9 @@
           $posts[$key]['image'] = $images->fn_get_image($post['post_id'], 'post', $post['image']);
           $thumb = $images->fn_get_image($post['pet_id'], 'pet', $post['thumb']);
           if(!$thumb) {
-            $posts[$key]['thumb'] = _SITE_URL_.'images/default-pic.png';
+            $posts[$key]['thumb'] = _IMAGE_URL_.'default-pic.png';
           } else {
-            $posts[$key]['thumb'] = $images->fn_generate_thumbnail('pet', _SITE_DOMAIN_HTTP_.$thumb['image_path'], 48, 48, true);
+            $posts[$key]['thumb'] = $images->fn_generate_thumbnail('pet', $thumb['image_path'], 48, 48, true);
           }
 
           if($post['pet_id'] == $pet_id) {

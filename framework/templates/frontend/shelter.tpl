@@ -124,9 +124,8 @@
 	</div>
 	<div class="newsfeed whitebox" >
 		<!-- NEWSFEED CONTENT -->
-		<div class="newsfeed-content">
+		<div class="newsfeed-cont">
 			<div id="current_location_area" style="height:50%;padding:2px;"></div>
-			<br clear="all" />
 		</div>
 		
 	</div>

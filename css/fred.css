@@ -93,10 +93,6 @@
   margin: 0 auto;
 }
 
-.commentarea-cont {
-  padding: 20px 30px;
-}
-
 .mid .comment-area > div > .comment-container:not(:last-child) {
 
 }
@@ -174,7 +170,7 @@
 }
 
 .newsfeed-bottom {
-  padding: 10px 0;
+  padding: 10px 0 0;
   margin-top: 15px;
   border-top: 1px solid #ddd;
   overflow: hidden;

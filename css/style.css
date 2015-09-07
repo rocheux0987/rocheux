@@ -459,11 +459,6 @@ img.slick-next {
   z-index: 5;
 }
 
-.newsfeed-content {
-  padding: 15px 30px 30px;
-  overflow: hidden;
-}
-
 .profile-pic {
   width: 30px;
   vertical-align: middle;
@@ -1652,8 +1647,8 @@ button.upload {
     z-index: 5;
   }
 
-  .newsfeed-content {
-    padding: 10px 20px 20px;
+  .newsfeed-cont {
+    padding: 0px;
   }
 
   .play > img {
