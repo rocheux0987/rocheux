@@ -87,17 +87,14 @@
 .comment-area {
   display: none;
   position: relative;
-  padding: 30px;
-  top: -45px;
+  top: -35px;
   z-index: 1;
+  width: 93%;
+  margin: 0 auto;
+}
 
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  box-shadow: -1px 9px 28px #888888;
-  margin: 0 auto 35px;
-  padding: 20px 25px;
-  width: 90%;
+.commentarea-cont {
+  padding: 20px 30px;
 }
 
 .mid .comment-area > div > .comment-container:not(:last-child) {
@@ -177,7 +174,7 @@
 }
 
 .newsfeed-bottom {
-  padding-top: 10px;
+  padding: 10px 30px;
   margin-top: 15px;
   border-top: 1px solid #ddd;
   overflow: hidden;
@@ -886,18 +883,7 @@ p.buttons {
   border: 0;
 }
 
-.mid {
-  width: 64.444433%;
-  float: left;
-  margin-top: 50px;
-  padding: 0 15px;
-}
-
-.newsfeed {
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 35px;
-  padding: 20px 25px;
-  position: relative;
+#post_tags option:first-child {
+  color: #000;
   z-index: 5;
 }

@@ -190,8 +190,8 @@ input.datepicker {
   margin: 5px;
 } 
 .header .login-top-menu > nav > ul > li > ul > li > a > span{
-   color:red;
-   font-size: 12px; 
+  color:red;
+  font-size: 12px; 
 }
 .arrow_box:after, .arrow_box:before {
   bottom: 100%;
@@ -461,7 +461,6 @@ img.slick-next {
 
 .newsfeed-content {
   padding: 15px 30px 30px;
-  overflow: hidden;
 }
 
 .profile-pic {
@@ -747,6 +746,10 @@ input.invite {
   width: 16%;
 }
 
+.button-primary.btn-skip {
+  width: 12%;
+}
+
 /*==Modal popup==*/
 .modal-popup {
   position: fixed;
@@ -908,7 +911,6 @@ p.modal-title {
 }
 .nearest-content {
   padding: 15px 0;
-  overflow: hidden;
 }
 .nearest-content  > .left {
   width: 39%;
@@ -1576,6 +1578,8 @@ button.upload {
     width: 95%;
   }
 
+
+
   .newsfeed-bottom span {
     position: absolute;
     z-index: 11;
@@ -1619,7 +1623,6 @@ button.upload {
     border: 1px solid #CECECE;
     margin-left: -40px;
   }
-
   .naddress, .nother-infos {
     float: left;
     width: 100%;
@@ -1688,14 +1691,24 @@ button.upload {
   .general.vet {
     padding: 30px 60px 70px;
   }
+
+  input.invite {
+    padding: 10px;
+    border: 1px solid #C7C7C7;
+    border-radius: 6px;
+    width: 100%;
+  }
+
+  .button-primary.btn-invite {
+    width: 100%;
+  }
+
+  .button-primary.btn-skip {
+    width: 95%;
+  }
 }
 
 @media only screen and (max-width: 497px) {
-  .nother-infos {
-    margin: 0;
-    float: left;
-  }
-
   .newsfeed-bottom span {
     position: absolute;
     z-index: 11;
@@ -1725,7 +1738,7 @@ button.upload {
     margin-left: 2px;
   }
 
-  .button-primary {
+  .button-primary, .button-primary.btn-skip{
     border: 0 none;
     border-radius: 6px;
     color: #FFFFFF;
@@ -1932,7 +1945,7 @@ button.upload {
     font-size: 11px;
   }
 
-  .button-primary {
+  .button-primary, .button-primary.btn-skip {
     border: 0 none;
     border-radius: 6px;
     color: #FFFFFF;
@@ -1988,7 +2001,7 @@ button.upload {
     margin-left: 110px;
   }
 
-  .button-primary {
+  .button-primary, .button-primary.btn-skip {
     border: 0 none;
     border-radius: 6px;
     color: #FFFFFF;
