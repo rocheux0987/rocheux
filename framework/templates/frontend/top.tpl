@@ -21,6 +21,7 @@
         $(document).on('click' , '#modal-open' , function(){
             $("#login-response").html('');
             popup_open('#popup-login');
+            $('#login_user').focus();
         });
 
 
@@ -28,7 +29,46 @@
             $.post('{/literal}{"login.php"|seo_url}{literal}/?act=logout' , function(){
                 location.reload();
             });
-        }); 
+        });
+
+
+        $('#login_user').keypress(function (e) {
+         var key = e.which;
+         if(key == 13)  // the enter key code
+          {
+            if($('#login_password').val() != ''){
+                login();
+            }else{
+                $('#login_password').focus();
+            }
+          }
+        });  
+
+        $('#login_password').keypress(function (e) {
+         var key = e.which;
+         if(key == 13)  // the enter key code
+          {
+            if($('#login_user').val() != ''){
+                $('#remember_me').focus();
+            }else{
+                $('#login_user').focus();
+            }
+          }
+        });  
+
+        $('#remember_me').keypress(function (e) {
+         var key = e.which;
+         if(key == 13)  // the enter key code
+          {
+            if($('#login_user').val() == ''){
+                $('#login_user').focus();
+            }else if($('#login_password').val() != ''){
+                $('#login_user').focus();
+            }else{
+                login();
+            }
+          }
+        });  
     });
 
 
@@ -51,8 +91,8 @@
             return false;   
         }
         
-        var user = $('#user').val();
-        var pass = $('#password').val();
+        var user = $('#login_user').val();
+        var pass = $('#login_password').val();
 
 
         $.ajax({
@@ -157,18 +197,18 @@
                     <div class="popup-field-label">
                     </div>
                     <div class="popup-field">
-                    <input type="email" name="user" id="user" placeholder="Email" />
+                    <input type="email" name="user" id="login_user" placeholder="Email" />
                     </div>
                 </div>
                 <div class="popup-fields">
                     <div class="popup-field-label">
                     </div>
                     <div class="popup-field">
-                    <input type="password" name="password" id="password" placeholder="Password" />
+                    <input type="password" name="password" id="login_password" placeholder="Password" />
                     </div>
                 </div>
                 <div class="popup-fields">
-                    <input type="checkbox" name="remember" value="remember">Remember me
+                    <input type="checkbox" name="remember" id="remember_me" value="remember">Remember me
                 </div>
                 <div class="popup-fields">
                     <div class="button-primary" onclick="login();">

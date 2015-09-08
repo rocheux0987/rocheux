@@ -29,20 +29,20 @@
     <div class="leftbox whitebox">
         <label class="text-muted">PET WANTS</label>
         <ul>
-            <li class="side-icon"><a class="groomers" href="{"groomers.php"|seo_url}"></a><a href="{"groomers.php"|seo_url}"><span>Pet Groomers</span></a></li>
-            <li class="side-icon"><a class="walkers" href="{"walkers.php"|seo_url}"></a><a href="{"walkers.php"|seo_url}"><span>Pet Walkers</span></a></li>
-            <li class="side-icon"><a class="boarding" href="{"boarding.php"|seo_url}"></a><a href="{"boarding.php"|seo_url}"><span>Pet Boarding</span></a></li>
-            <li class="side-icon"><a class="dating" href="{"dating.php"|seo_url}"></a><a href="{"dating.php"|seo_url}"><span>Pet Dating</span></a></li>
+            <li class="side-icon"><a class="groomers" href="{"pet_wants.php"|seo_url}/?address=groomers"></a><a href="{"pet_wants.php"|seo_url}/?address=groomers"><span>Pet Groomers</span></a></li>
+            <li class="side-icon"><a class="walkers" href="{"pet_wants.php"|seo_url}/?address=walkers"></a><a href="{"pet_wants.php"|seo_url}/?address=walkers"><span>Pet Walkers</span></a></li>
+            <li class="side-icon"><a class="boarding" href="{"pet_wants.php"|seo_url}/?address=boarding"></a><a href="{"pet_wants.php"|seo_url}/?address=boarding"><span>Pet Boarding</span></a></li>
+            <li class="side-icon"><a class="dating" href="{"pet_wants.php"|seo_url}/?address=dating"></a><a href="{"pet_wants.php"|seo_url}/?address=dating"><span>Pet Dating</span></a></li>
         </ul>
     </div>
     
     <div class="leftbox whitebox">
         <label class="text-muted">PET-FRIENDLY</label>
         <ul>
-            <li class="side-icon"><a class="restaurants" href="{"restaurants.php"|seo_url}"></a><a href="{"restaurants.php"|seo_url}"><span>Restaurants</span></a></li>
-            <li class="side-icon"><a class="hotels" href="{"hotels.php"|seo_url}"></a><a href="{"restaurants.php"|seo_url}"><span>Hotels</span></a></li>
-            <li class="side-icon"><a class="park" href="{"park.php"|seo_url}"></a><a href="{"restaurants.php"|seo_url}"><span>Park/Beach</span></a></li>
-            <li class="side-icon"><a class="travel" href="{"travel.php"|seo_url}"></a><a href="{"restaurants.php"|seo_url}"><span>Travel</span></a></li>
+            <li class="side-icon"><a class="restaurants" href="{"pet_friendly.php"|seo_url}/?address=restaurants"></a><a href="{"pet_friendly.php"|seo_url}/?address=restaurants"><span>Restaurants</span></a></li>
+            <li class="side-icon"><a class="hotels" href="{"pet_friendly.php"|seo_url}/?address=hotels"></a><a href="{"pet_friendly.php"|seo_url}/?address=hotels"><span>Hotels</span></a></li>
+            <li class="side-icon"><a class="park" href="{"pet_friendly.php"|seo_url}/?address=park and beach"></a><a href="{"pet_friendly.php"|seo_url}/?address=park and beach"><span>Park/Beach</span></a></li>
+            <li class="side-icon"><a class="travel" href="{"pet_friendly.php"|seo_url}/?address=travel"></a><a href="{"pet_friendly.php"|seo_url}/?address=travel"><span>Travel</span></a></li>
         </ul>
     </div>
 </div>

@@ -28,7 +28,7 @@
 <!-- MAIN -->
 <div class="main-content">
     <!-- LEFT NAV -->
-    {if $reg eq false}
+    {if !isset($no_side)}
         {include file="`$smarty.const._TPL_FRONTEND_DIR_`column_left.tpl"}
     {/if}
     <!-- END LEFT NAV -->
@@ -38,7 +38,7 @@
     <!-- END MID (ARTICLE) -->
     
     <!-- RIGHT NAV -->
-    {if $reg eq false}
+    {if !isset($no_side)}
         {include file="`$smarty.const._TPL_FRONTEND_DIR_`column_right.tpl"}
     {/if}
     <!-- END RIGHT NAV -->

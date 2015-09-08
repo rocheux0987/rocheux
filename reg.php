@@ -7,12 +7,13 @@ if(isset($_SESSION['user_data'])){
 
 #Controllers
 $controllers_loader->load("user");
-//move to controller (create cache)
-$country = $user_controller->get_country();
+$controllers_loader->load("cache");
+//add cache control (create cache)
+$country = $cache_controller->get_country();
 
 #Smarty assigns
 $smarty->assign("country", $country);
-$smarty->assign("reg", true);
+$smarty->assign("no_side", true);
 $smarty->assign("section_template", 'registration/reg.tpl');
 $smarty->assign("section_title", "Register");
 
@@ -22,20 +23,20 @@ if(isset($_POST['act'])){
 	$type = $_POST['type'];
 
 	//breed
-	//move to controller
-	$breed = $user_controller->get_breed($pet_type_id);
+	//add cache control
+	$breed = $cache_controller->get_breed($pet_type_id);
 
 	//food
-	//move to controller
-	$food = $user_controller->get_food($pet_type_id);
+	//add cache control
+	$food = $cache_controller->get_food($pet_type_id);
 
 	//brand
-	//move to controller
-	$brand = $user_controller->get_brand($pet_type_id);
+	//add cache control
+	$brand = $cache_controller->get_brand($pet_type_id);
 
 	//style
-	//move to controller
-	$style = $user_controller->get_style($pet_type_id);
+	//add cache control
+	$style = $cache_controller->get_style($pet_type_id);
 
 	switch ($type) {
 		case 'pet':
@@ -119,8 +120,8 @@ if($_POST){
 	}else if($_GET['act'] == 'second step'){
 		
 		if ($_POST['reg_form']['user_type'] == 'B' || $_POST['reg_form']['user_type'] == 'V'){
-			//move to controller
-			$pet = $user_controller->get_pet_types();
+			//add cache control
+			$pet = $cache_controller->get_pet_types();
 		}
 		switch ($_POST['reg_form']['user_type']) {
 			case 'B':
@@ -146,8 +147,8 @@ if($_POST){
 				break;
 			case 'V':
 				$smarty->assign("section_title", "Register - Veterinarian Details");
-				//move to controller
-				$spec = $user_controller->get_specialize();
+				//add cache control
+				$spec = $cache_controller->get_specialize();
 
 				$smarty->assign("spec", $spec);
 				$smarty->assign("pet", $pet);
@@ -179,8 +180,8 @@ if($_POST){
 
 		$country = $_GET['act']; 
 		
-		//move to controller
-		$state = $user_controller->get_state($country);
+		//add cache control
+		$state = $cache_controller->get_state($country);
 		
 		if(count($state) > 0){
 			echo '
